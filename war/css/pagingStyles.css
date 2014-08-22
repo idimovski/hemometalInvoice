@@ -1,0 +1,63 @@
+h1, h2,ul {
+	clear: both !important;
+}
+
+ul.pagination1 li:hover,
+ul.pagination2 li:hover,
+ul.pagination3 li:hover {
+	background-color: #FCADA4 !important;
+	cursor: pointer !important;
+}
+
+ul.pagination1 li,
+ul.pagination2 li,
+ul.pagination3 li {
+    padding: 0px  !important;
+    font-family: arial !important;
+	/*background-color: #DCECEC;*/
+	background-color: #F8F8F8 !important;
+	
+	
+    font-size: 24px !important;
+    color: #302A2A !important;
+    line-height: 1 !important;
+    /*width: 600px !important;*/
+    margin-bottom: 1px !important;
+	list-style:none !important;
+}
+
+ul.red {
+	outline:10px solid red  !important;
+}
+
+ul.simplePagerNav li{
+    display:block !important;
+    float: left !important;
+    padding: 10px !important;
+    margin-bottom: 10px !important;
+    font-family: georgia !important;
+	font-size:14px !important;
+}
+
+ul.simplePagerNav li a{
+    color: #333 !important;
+    text-decoration: none !important;
+}
+
+li.currentPage {
+    background: #fd887a !important;	
+}
+
+ul.simplePagerNav li.currentPage a {
+	color: #fff !important;	
+}
+
+table.pageme {
+    border-collapse: collapse !important;
+    border: 1px solid #ccc !important;
+}  
+
+table.pageme td {
+    border-collapse: collapse !important;
+    border: 1px solid #ccc !important;
+}
