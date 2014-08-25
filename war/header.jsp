@@ -16,7 +16,7 @@
 								<li>
 									<a href="" class="icon fa-bar-chart-o"><span>Администрација</span></a>
 									<ul>
-										<li><a href="#">Клиенти</a></li>
+										<li><a href="getclients">Клиенти</a></li>
 										<li><a href="addItem">Производи</a></li>
 									</ul>
 								</li>

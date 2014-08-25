@@ -107,6 +107,39 @@ function goToPage(url){
 					<div class="row">
 						
 						<div class="5u">
+							<select name="kategorija" title="Kfdsfasdsfk">
+								<option <%if(i.getProperty("kategorija").equals("traktori")){ %>selected="selected"<%} %> value="traktori">Трактори</option>
+								<option <%if(i.getProperty("kategorija").equals("plugovi")){ %>selected="selected"<%} %> value="plugovi">Плугови</option>
+								<option <%if(i.getProperty("kategorija").equals("tanjirachi")){ %>selected="selected"<%} %> value="tanjirachi">Тањирачи</option>
+								<option <%if(i.getProperty("kategorija").equals("krimeri")){ %>selected="selected"<%} %> value="krimeri">Кримери</option>
+								<option <%if(i.getProperty("kategorija").equals("rotacionikodachki")){ %>selected="selected"<%} %>  value="rotacionikodachki">Ротациони Кодачки</option>
+								<option <%if(i.getProperty("kategorija").equals("frezi")){ %>selected="selected"<%} %>  value="frezi">Фрези</option>
+								<option <%if(i.getProperty("kategorija").equals("megurednifrezi")){ %>selected="selected"<%} %>  value="megurednifrezi">Меѓуредни фрези</option>
+								<option <%if(i.getProperty("kategorija").equals("sealki")){ %>selected="selected"<%} %>  value="sealki">Сеалки</option>
+								<option  <%if(i.getProperty("kategorija").equals("prikolici")){ %>selected="selected"<%} %> value="prikolici">Приколици</option>
+								<option  <%if(i.getProperty("kategorija").equals("balirachki")){ %>selected="selected"<%} %> value="balirachki">Блирачки</option>
+								<option  <%if(i.getProperty("kategorija").equals("senoprevrtuvacki")){ %>selected="selected"<%} %> value="senoprevrtuvacki">Сенопревртувачки</option>
+								<option  <%if(i.getProperty("kategorija").equals("niskiprskalki")){ %>selected="selected"<%} %> value="niskiprskalki">Ниски Прскалки</option>
+								<option  <%if(i.getProperty("kategorija").equals("amortizeri")){ %>selected="selected"<%} %> value="amortizeri">Атомизери</option>
+								<option  <%if(i.getProperty("kategorija").equals("mulceri")){ %>selected="selected"<%} %> value="mulceri">Мулчери</option>
+								<option  <%if(i.getProperty("kategorija").equals("opgradina")){ %>selected="selected"<%} %> value="opgradina">Опрема за градина</option>
+								<option  <%if(i.getProperty("kategorija").equals("opfarmi")){ %>selected="selected"<%} %> value="opfarmi">Опрема за фарми</option>
+								<option  <%if(i.getProperty("kategorija").equals("opnavodnuvanje")){ %>selected="selected"<%} %> value="opnavodnuvanje">Опрема за наводнување</option>
+								<option  <%if(i.getProperty("kategorija").equals("oplozarstvo")){ %>selected="selected"<%} %> value="oplozarstvo">Опрема за овоштарство и лозарство</option>
+							</select>
+						</div>
+						
+						<div class="5u">
+							<select name="merka">
+								<option <%if(i.getProperty("merka").equals("par")){ %>selected="selected"<%} %>  value="par">Парче</option>
+								<option <%if(i.getProperty("merka").equals("kg")){ %>selected="selected"<%} %>  value="kg">Килограми</option>
+							</select>
+						</div>
+							
+					</div>
+					<div class="row">
+						
+						<div class="5u">
 							<select name="ddv">
 								<option value="5" <%if(i.getProperty("ddv").equals("5")){ %>selected="selected"<%} %>>ДДВ 5%</option>
 								<option value="18" <%if(i.getProperty("ddv").equals("18")){ %>selected="selected"<%} %>>ДДВ 18%</option>

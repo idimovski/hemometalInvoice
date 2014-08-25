@@ -53,19 +53,19 @@ $(document).ready(function() {
 	
 	//$("ul.pagination2").quickPager({pagerLocation:"both"});
 	
-	 $( "#additemdialog" ).dialog({
+	 $( "#addclientdialog" ).dialog({
 	 	    height: 700,
 	 	    width:800,
 	 	    modal: false,
 	 	   draggable: false,
 	 	   	autoOpen: false,
-	 	   title: "Нов Производ",
+	 	   title: "Нов Клиент",
 	 	    buttons: {
 	 	        "Запиши": function() {
-	 	        	$( "#addItemForm" ).submit();
+	 	        	$( "#addClientForm" ).submit();
 	 	        },
 	 	        "Откажи": function() {
-	 	        	 $( "#additemdialog" ).dialog("close");
+	 	        	 $( "#addclientdialog" ).dialog("close");
 	 	        }
 	 	    	
 	 	      }
@@ -75,13 +75,13 @@ $(document).ready(function() {
 });
 
 function openDialog(){
-	 $( "#additemdialog" ).dialog("open");
+	 $( "#addclientdialog" ).dialog("open");
 }
 
 function openItem(key){
     
-	document.location.href = "getItem?itemKey=" + key;
-	alert(key + sifra + ime + cena+proizvoditel+opis);
+	document.location.href = "getClient?clientKey=" + key;
+	
 }
 
    
@@ -92,7 +92,7 @@ function openItem(key){
 		<!-- Features -->
 			 <div id="features-wrapper">
 				<section id="features" class="container">
-				<h3 align="left">Производи:</h3>
+				<h3 align="left">Клиенти:</h3>
 				
 				<div class="row"></div>
 				<div class="row">
@@ -108,14 +108,12 @@ function openItem(key){
 									<label class="description" >Име</label>
 								</td>
 								<td width="20%">
-									<label class="description" >Цена</label>
+									<label class="description" >Сметка</label>
 								</td>
-								<td width="10%">
-									<label class="description" >Производител</label>
+								<td width="20%">
+									<label class="description" >Тип</label>
 								</td>
-								<td width="10%">
-									<label class="description" >Потекло</label>
-								</td>
+							
 								
 								</tr>
 				
@@ -125,8 +123,8 @@ function openItem(key){
 				<%
 				int i = 0;
 				List<Entity> items  = new ArrayList();
-				if (null != request.getAttribute("itemsList")){
-					items = (List<Entity>)request.getAttribute("itemsList");
+				if (null != request.getAttribute("clientList")){
+					items = (List<Entity>)request.getAttribute("clientList");
 				}
 			    for(Entity e : items){
 			    i++;	%>
@@ -145,13 +143,10 @@ function openItem(key){
 									<label id="" class="description" style="cursor: pointer;"><%=e.getProperty("ime") %></label>
 								</td>
 								<td width="20%">
-									<label class="description" style="cursor: pointer;"><%=e.getProperty("cena") %></label>
+									<label class="description" style="cursor: pointer;"><%=e.getProperty("smetka") %></label>
 								</td>
-								<td width="10%">
-									<label class="description" style="cursor: pointer;"><%=e.getProperty("proizvoditel") %></label>
-								</td>
-								<td width="10%">
-									<label class="description" style="cursor: pointer;"><%=e.getProperty("zemjapotelko") %></label>
+								<td width="20%">
+									<label class="description" style="cursor: pointer;"><%=e.getProperty("tip") %></label>
 								</td>
 								
 							
@@ -167,88 +162,49 @@ function openItem(key){
 				
 			<br/>
 			<ul class="actions">
-						<li><input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="submit" value="Нов Производ" onclick="openDialog();"/></li>
+						<li><input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="submit" value="Нов Клиент" onclick="openDialog();"/></li>
 						 
 						
 			</ul>
 				
 				</section>		
 				<div style="display:none">
-				<div id="additemdialog">
-				<form id="addItemForm" method="post" action="addItem" >
+				<div id="addclientdialog">
+				<form id="addClientForm" method="post" action="addclient" >
 				
 					
 					<div class="row">
 						
 						<div class="5u">
-							<input name="ime" placeholder="Име" type="text" />
+							<input name="ime" placeholder="Име на Клиент" type="text" />
 						</div>
 						<div class="5u">
-							<input name="cena" placeholder="Цена во Денари" type="text" />
+							<input name="smetka" placeholder="Жиро сметка" type="text" />
 						</div>
 					</div>
 					<div class="row">
 						
 						<div class="5u">
-							<select name="proizvoditel">
-								<option selected="selected">Производител</option>
-								<option>Алплер</option>
-								<option>Зетор</option>
+							<select name="tip">
+								<option selected="selected">Тип На Клиент</option>
+								<option>Приоритет 1</option>
+								<option>Приоритет 2</option>
+								<option>Домашен</option>
+								<option>ЕУ</option>
+								<option>Друг..</option>
 							</select>
 						</div>
-						<div class="5u">
-							<select name="zemjapotelko">
-								<option selected="selected">Земја на потекло</option>
-								<option>Турција</option>
-								<option>Чешка</option>
-							</select>
-						</div>
+						
+					
 							
 					</div>
+					
 					<div class="row">
-						
 						<div class="5u">
-							<select name="kategorija">
-								<option selected="selected">Категорија</option>
-								<option value="traktori">Трактори</option>
-								<option value="plugovi">Плугови</option>
-								<option value="tanjirachi">Тањирачи</option>
-								<option value="krimeri">Кримери</option>
-								<option value="rotacionikodachki">Ротациони Кодачки</option>
-								<option value="frezi">Фрези</option>
-								<option value="megurednifrezi">Меѓуредни фрези</option>
-								<option value="sealki">Сеалки</option>
-								<option value="prikolici">Приколици</option>
-								<option value="balirachki">Блирачки</option>
-								<option value="senoprevrtuvacki">Сенопревртувачки</option>
-								<option value="niskiprskalki">Ниски Прскалки</option>
-								<option value="amortizeri">Атомизери</option>
-								<option value="mulceri">Мулчери</option>
-								<option value="opgradina">Опрема за градина</option>
-								<option value="opfarmi">Опрема за фарми</option>
-								<option value="opnavodnuvanje">Опрема за наводнување</option>
-								<option value="oplozarstvo">Опрема за овоштарство и лозарство</option>
-							</select>
+							<textarea name="adresa" placeholder="Адреса" type="text" ></textarea>
 						</div>
 						
-						<div class="5u">
-							<select name="merka">
-								<option selected="selected">Единечна Мерка</option>
-								<option value="par">Парче</option>
-								<option value="kg">Килограми</option>
-							</select>
-						</div>
-							
-					</div>
-					<div class="row">
 						
-						<div class="5u">
-							<select name="ddv">
-								<option selected="selected">ДДВ %</option>
-								<option value="5">ДДВ 5%</option>
-								<option value="18">ДДВ 18%</option>
-							</select>
-						</div>
 						<div class="5u">
 							<textarea name="opis" placeholder="Опис" type="text" ></textarea>
 						</div>

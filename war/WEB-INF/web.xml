@@ -6,6 +6,31 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
+	<servlet>
+		<servlet-name>getClient</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.GetClient</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getClient</servlet-name>
+		<url-pattern>/getClient</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>addclient</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.AddUpdateClient</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addclient</servlet-name>
+		<url-pattern>/addclient</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>getclients</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.GetAllClients</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getclients</servlet-name>
+		<url-pattern>/getclients</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>addItem</servlet-name>

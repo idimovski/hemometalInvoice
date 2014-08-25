@@ -24,33 +24,20 @@ import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
 @SuppressWarnings("serial")
-public class AddItem extends HttpServlet {
+public class AddUpdateClient extends HttpServlet {
 	
 	
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		loadItemsInReq(req);
-		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/items.jsp");
-		 d.forward(req, resp);
-	}
+	
 
 
-	private void loadItemsInReq(HttpServletRequest req) {
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		Query query = new Query("item").addSort("date", SortDirection.DESCENDING);
-		List<Entity> items = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(1000));
-		
-		req.setAttribute("itemsList", items);
-	}
 	
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//Chek if update or insert
+	
 		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		String itemkey = req.getParameter("itemKey");
+		String itemkey = req.getParameter("clientKey");
 		
 		Entity item  = null;
 		if(null!=itemkey){
@@ -62,20 +49,16 @@ public class AddItem extends HttpServlet {
 			}
 		}else{
 			
-			item = new Entity("item");
+			item = new Entity("client");
 		}
 		
 		
 		String sifra = req.getParameter("sifra");
 		String ime = req.getParameter("ime");
-		String cena = req.getParameter("cena");
-		String proizvoditel = req.getParameter("proizvoditel");
-		String zemjapotelko = req.getParameter("zemjapotelko");
-		String ddv = req.getParameter("ddv");
-		String kategorija = req.getParameter("kategorija");
-		String merka = req.getParameter("merka");
+		String smetka = req.getParameter("smetka");
+		String tip = req.getParameter("tip");		
 		
-		
+		Text adresa = new Text(req.getParameter("adresa"));
 		Text opis = new Text(req.getParameter("opis"));
 		
 		
@@ -83,7 +66,7 @@ public class AddItem extends HttpServlet {
 		
 		
 		if(null == sifra){
-			KeyRange range = datastore.allocateIds("itemseq", 1);
+			KeyRange range = datastore.allocateIds("clientseq", 1);
 			Key theKey = null;
 			for (Iterator iterator = range.iterator(); iterator.hasNext();) {
 				theKey = (Key) iterator.next();
@@ -98,12 +81,9 @@ public class AddItem extends HttpServlet {
 		
 		
 		item.setProperty("ime", ime);
-		item.setProperty("cena", cena);
-		item.setProperty("proizvoditel", proizvoditel);
-		item.setProperty("zemjapotelko", zemjapotelko);
-		item.setProperty("ddv", ddv);
-		item.setProperty("kategorija", kategorija);
-		item.setProperty("merka", merka);
+		item.setProperty("smetka", smetka);
+		item.setProperty("tip", tip);
+		item.setProperty("adresa", adresa);
 		item.setProperty("opis", opis);
 		item.setProperty("date", new Date());
 		
@@ -114,12 +94,12 @@ public class AddItem extends HttpServlet {
 		
 		tr.commit();
 		
-		System.out.println("Saved item" + item.getProperty("sifra"));
+		System.out.println("Saved client" + item.getProperty("sifra"));
 		
-		loadItemsInReq(req);
-		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/items.jsp");
-		 d.forward(req, resp);
+	
+		 
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/getclients");
+		d.forward(req, resp);
 		
 		
 		
