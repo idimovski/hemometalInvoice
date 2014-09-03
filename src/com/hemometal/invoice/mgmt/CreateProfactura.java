@@ -24,20 +24,53 @@ import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
 @SuppressWarnings("serial")
-public class AddUpdateClient extends HttpServlet {
+public class CreateProfactura extends HttpServlet {
 	
 	
-	
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		String clientid = req.getParameter("clientid");
+		
+		Entity pro = new Entity("pro");
+		
+		Key proKey =  datastore.put(pro);
+		
+		pro.setProperty("sifra", proKey.toString().replaceAll("\\D+",""));
+		
+		
+		pro.setProperty("clientid", clientid);
+		
+		Entity client = null;
+		try {
+			client = datastore.get(KeyFactory.stringToKey(clientid));
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		pro.setProperty("clientName", client.getProperty("ime"));
+		pro.setProperty("clientSifra", client.getProperty("sifra"));
+		
+		req.setAttribute("pro", pro);
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/proEdit.jsp");
+		d.forward(req, resp);
+		
+	}
 
 
+	private void loadItemsInReq(HttpServletRequest req) {
+		
+	}
 	
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-	
+		//Chek if update or insert
 		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		String itemkey = req.getParameter("clientKey");
+		String itemkey = req.getParameter("itemKey");
 		
 		Entity item  = null;
 		if(null!=itemkey){
@@ -49,24 +82,20 @@ public class AddUpdateClient extends HttpServlet {
 			}
 		}else{
 			
-			item = new Entity("client");
+			item = new Entity("item");
 		}
 		
 		
 		String sifra = req.getParameter("sifra");
 		String ime = req.getParameter("ime");
-		String smetka = req.getParameter("smetka");
-		String tip = req.getParameter("tip");
-		String mesto = req.getParameter("mesto");
-		String opstina = req.getParameter("opstina");
-		
-		String zipcode = req.getParameter("zipcode");
-		String danbr = req.getParameter("danbr");
-		String tel = req.getParameter("tel");
-		String vidnalice = req.getParameter("vidnalice");
+		String cena = req.getParameter("cena");
+		String proizvoditel = req.getParameter("proizvoditel");
+		String zemjapotelko = req.getParameter("zemjapotelko");
+		String ddv = req.getParameter("ddv");
+		String kategorija = req.getParameter("kategorija");
+		String merka = req.getParameter("merka");
 		
 		
-		String adresa = req.getParameter("adresa");
 		Text opis = new Text(req.getParameter("opis"));
 		
 		
@@ -74,7 +103,7 @@ public class AddUpdateClient extends HttpServlet {
 		
 		
 		if(null == sifra){
-			KeyRange range = datastore.allocateIds("clientseq", 1);
+			KeyRange range = datastore.allocateIds("itemseq", 1);
 			Key theKey = null;
 			for (Iterator iterator = range.iterator(); iterator.hasNext();) {
 				theKey = (Key) iterator.next();
@@ -89,20 +118,12 @@ public class AddUpdateClient extends HttpServlet {
 		
 		
 		item.setProperty("ime", ime);
-		item.setProperty("adresa", adresa);
-		
-		item.setProperty("mesto", mesto);
-		item.setProperty("opstina", opstina);
-		item.setProperty("zipcode", zipcode);
-		item.setProperty("smetka", smetka);
-		item.setProperty("danbr", danbr);
-		item.setProperty("tel", tel);
-		item.setProperty("vidnalice", vidnalice);
-		item.setProperty("tip", tip);
-		
-		
-		
-		
+		item.setProperty("cena", cena);
+		item.setProperty("proizvoditel", proizvoditel);
+		item.setProperty("zemjapotelko", zemjapotelko);
+		item.setProperty("ddv", ddv);
+		item.setProperty("kategorija", kategorija);
+		item.setProperty("merka", merka);
 		item.setProperty("opis", opis);
 		item.setProperty("date", new Date());
 		
@@ -113,12 +134,12 @@ public class AddUpdateClient extends HttpServlet {
 		
 		tr.commit();
 		
-		System.out.println("Saved client" + item.getProperty("sifra"));
+		System.out.println("Saved item" + item.getProperty("sifra"));
 		
-	
-		 
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/getclients");
-		d.forward(req, resp);
+		loadItemsInReq(req);
+		
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/items.jsp");
+		 d.forward(req, resp);
 		
 		
 		

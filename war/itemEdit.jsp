@@ -57,29 +57,25 @@ function goToPage(url){
 </script>
 
 <jsp:include page="header.jsp" ></jsp:include>		
-			
+			<%Entity i = (Entity)request.getAttribute("item"); %>
 		<!-- Features -->
-			 <div id="features-wrapper">
-				<section id="features" class="container">
-				<h3 align="left">Производ:</h3>
+			 	<div id="features-wrapper">
+			 	<section id="features" class="container">
+			 	<div class="row">
+			 		<div class="5u">
+			 			<h3 align="left">Производ: <%=i.getProperty("sifra") %></h3>	
+			 		</div>
+			 		<div class="5u">
+			 			
+			 		</div>	
+			 	</div>
 				
-				<div class="row"></div>
-				<div class="row">
-				<div class="10u" align="center" style="width: 100%">
-				
-				
-			    <%Entity i = (Entity)request.getAttribute("item"); %>
-				<form id="addItemForm" method="post" action="addItem" >
-				
+				<div class="10u" align="center" style="width: 100%">	
+					<form id="addItemForm" method="post" action="addItem">
+					<input name="itemKey" type="hidden" type="text" value="<%=KeyFactory.keyToString(i.getKey()) %>" />
+					<input name="sifra" type="hidden" readonly="readonly" placeholder="Шифра" type="text" value="<%=i.getProperty("sifra") %>" />
 					
-					<div class="row">
-						<div class=3u">
-							<input name="itemKey" type="hidden" type="text" value="<%=KeyFactory.keyToString(i.getKey()) %>" />
-							<input name="sifra" readonly="readonly" placeholder="Шифра" type="text" value="<%=i.getProperty("sifra") %>" />
-						</div>
-					</div>
-					<div class="row">
-						
+					<div class="row">	
 						<div class="5u">
 							<input name="ime" placeholder="Име" type="text" value="<%=i.getProperty("ime") %>" />
 						</div>
@@ -89,24 +85,20 @@ function goToPage(url){
 					</div>
 					<div class="row">
 						
-						<div class="5u">
+						<div class="3u">
 							<select name="proizvoditel">
 								<option <%if(i.getProperty("proizvoditel").equals("Алплер")){ %>selected="selected"<%} %> >Алплер</option>
 								<option <%if(i.getProperty("proizvoditel").equals("Зетор")){ %>selected="selected"<%} %> >Зетор</option>
 								
 							</select>
 						</div>
-						<div class="5u">
+						<div class="3u">
 							<select name="zemjapotelko">
 								<option <%if(i.getProperty("zemjapotelko").equals("Турција")){ %>selected="selected"<%} %> >Турција</option>
 								<option <%if(i.getProperty("zemjapotelko").equals("Чешка")){ %>selected="selected"<%} %> >Чешка</option>
 							</select>
 						</div>
-							
-					</div>
-					<div class="row">
-						
-						<div class="5u">
+						<div class="4u">
 							<select name="kategorija" title="Kfdsfasdsfk">
 								<option <%if(i.getProperty("kategorija").equals("traktori")){ %>selected="selected"<%} %> value="traktori">Трактори</option>
 								<option <%if(i.getProperty("kategorija").equals("plugovi")){ %>selected="selected"<%} %> value="plugovi">Плугови</option>
@@ -128,6 +120,11 @@ function goToPage(url){
 								<option  <%if(i.getProperty("kategorija").equals("oplozarstvo")){ %>selected="selected"<%} %> value="oplozarstvo">Опрема за овоштарство и лозарство</option>
 							</select>
 						</div>
+							
+					</div>
+					<div class="row">
+						
+						
 						
 						<div class="5u">
 							<select name="merka">
@@ -135,18 +132,18 @@ function goToPage(url){
 								<option <%if(i.getProperty("merka").equals("kg")){ %>selected="selected"<%} %>  value="kg">Килограми</option>
 							</select>
 						</div>
-							
-					</div>
-					<div class="row">
-						
-						<div class="5u">
+							<div class="5u">
 							<select name="ddv">
 								<option value="5" <%if(i.getProperty("ddv").equals("5")){ %>selected="selected"<%} %>>ДДВ 5%</option>
 								<option value="18" <%if(i.getProperty("ddv").equals("18")){ %>selected="selected"<%} %>>ДДВ 18%</option>
 							</select>
 						</div>
+							
+					</div>
+					<div class="row">
+						
 						<div class="5u">
-							<textarea name="opis" placeholder="Опис" type="text" ><%=( (Text) i.getProperty("opis")).getValue()%></textarea>
+							<textarea rows="2" name="opis" placeholder="Опис" type="text" ><%=( (Text) i.getProperty("opis")).getValue()%></textarea>
 						</div>
 					</div>
 					<div class="row">
@@ -155,13 +152,12 @@ function goToPage(url){
 						<li><input class="button icon fa-file" style="cursor: pointer;" id="saveForm1"  value="Откажи" onclick="goToPage('addItem')"/></li>	
 					</ul>
 					
-					</div>
-					
+					</div>	
 				</form>
 				</div>
-				</div>
-				
+			</section>		
 			</div>
+		
 			
 			
 		

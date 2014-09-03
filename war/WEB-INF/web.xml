@@ -7,6 +7,24 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
 	<servlet>
+		<servlet-name>searchItems</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.SearchItems</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>searchItems</servlet-name>
+		<url-pattern>/searchItems</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>createPro</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.CreateProfactura</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>createPro</servlet-name>
+		<url-pattern>/createPro</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>getClient</servlet-name>
 		<servlet-class>com.hemometal.invoice.mgmt.GetClient</servlet-class>
 	</servlet>
@@ -14,6 +32,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>getClient</servlet-name>
 		<url-pattern>/getClient</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>addclient</servlet-name>
 		<servlet-class>com.hemometal.invoice.mgmt.AddUpdateClient</servlet-class>

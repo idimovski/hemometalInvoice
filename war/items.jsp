@@ -175,8 +175,8 @@ function openItem(key){
 				</section>		
 				<div style="display:none">
 				<div id="additemdialog">
-				<form id="addItemForm" method="post" action="addItem" >
-				
+				<form id="addItemForm" method="post" action="addItem" style="width: 100%" >
+				<div class="10u" style="width: 100%"> 
 					
 					<div class="row">
 						
@@ -189,25 +189,21 @@ function openItem(key){
 					</div>
 					<div class="row">
 						
-						<div class="5u">
+						<div class="4u">
 							<select name="proizvoditel">
 								<option selected="selected">Производител</option>
 								<option>Алплер</option>
 								<option>Зетор</option>
 							</select>
 						</div>
-						<div class="5u">
+						<div class="3u">
 							<select name="zemjapotelko">
-								<option selected="selected">Земја на потекло</option>
+								<option selected="selected">Потекло</option>
 								<option>Турција</option>
 								<option>Чешка</option>
 							</select>
 						</div>
-							
-					</div>
-					<div class="row">
-						
-						<div class="5u">
+						<div class="3u">
 							<select name="kategorija">
 								<option selected="selected">Категорија</option>
 								<option value="traktori">Трактори</option>
@@ -230,6 +226,11 @@ function openItem(key){
 								<option value="oplozarstvo">Опрема за овоштарство и лозарство</option>
 							</select>
 						</div>
+							
+					</div>
+					<div class="row">
+						
+						
 						
 						<div class="5u">
 							<select name="merka">
@@ -238,10 +239,6 @@ function openItem(key){
 								<option value="kg">Килограми</option>
 							</select>
 						</div>
-							
-					</div>
-					<div class="row">
-						
 						<div class="5u">
 							<select name="ddv">
 								<option selected="selected">ДДВ %</option>
@@ -249,6 +246,11 @@ function openItem(key){
 								<option value="18">ДДВ 18%</option>
 							</select>
 						</div>
+							
+					</div>
+					<div class="row">
+						
+						
 						<div class="5u">
 							<textarea name="opis" placeholder="Опис" type="text" ></textarea>
 						</div>
@@ -257,7 +259,7 @@ function openItem(key){
 						
 					
 					</div>
-					
+				</div>
 				</form>
 				</div>
 				</div>

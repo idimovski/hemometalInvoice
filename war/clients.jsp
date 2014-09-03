@@ -108,7 +108,7 @@ function openItem(key){
 									<label class="description" >Име</label>
 								</td>
 								<td width="20%">
-									<label class="description" >Сметка</label>
+									<label class="description" >Телефон</label>
 								</td>
 								<td width="20%">
 									<label class="description" >Тип</label>
@@ -143,7 +143,7 @@ function openItem(key){
 									<label id="" class="description" style="cursor: pointer;"><%=e.getProperty("ime") %></label>
 								</td>
 								<td width="20%">
-									<label class="description" style="cursor: pointer;"><%=e.getProperty("smetka") %></label>
+									<label class="description" style="cursor: pointer;"><%=e.getProperty("tel") %></label>
 								</td>
 								<td width="20%">
 									<label class="description" style="cursor: pointer;"><%=e.getProperty("tip") %></label>
@@ -179,40 +179,68 @@ function openItem(key){
 							<input name="ime" placeholder="Име на Клиент" type="text" />
 						</div>
 						<div class="5u">
+							<input name="adresa" placeholder="Адреса" type="text" />
+						</div>
+						
+					
+					</div>
+					
+					<div class="row">
+						<div class="3u">
+							<input name="mesto" placeholder="Место" type="text" />
+						</div>
+						<div class="4u">
+							<input name="zipcode" placeholder="Пошт. Код" type="text" />
+						</div>
+						<div class="3u">
+							<input name="opstina" placeholder="Општина" type="text" />
+						</div>
+					
+					</div>
+					<div class="row">
+						<div class="5u">
 							<input name="smetka" placeholder="Жиро сметка" type="text" />
 						</div>
-					</div>
-					<div class="row">
-						
 						<div class="5u">
+							<input name="danbr" placeholder="Даночен Број" type="text" />
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="3u">
+							<input name="tel" placeholder="Телефон" type="text" />
+						</div>
+						<div class="4u">
+							<select name="vidnalice">
+								<option value="not seelcted" selected="selected">Вид на правно лице</option>
+								<option value="pravno" >Правно лице</option>
+								<option value="fizicko">Физичко лице</option>
+								<option value="individzem">Индивидуален земјоделец</option>
+								<option value="zemzadruga">Земјоделска задруга</option>
+							</select>
+							
+						</div>
+						<div class="3u">
 							<select name="tip">
-								<option selected="selected">Тип На Клиент</option>
-								<option>Приоритет 1</option>
-								<option>Приоритет 2</option>
-								<option>Домашен</option>
-								<option>ЕУ</option>
-								<option>Друг..</option>
+								<option value="vip" selected="selected">Vip Клиент</option>
+								<option value="basic" >Основен Клиент</option>
 							</select>
 						</div>
-						
 					
-							
-					</div>
 					
-					<div class="row">
-						<div class="5u">
-							<textarea name="adresa" placeholder="Адреса" type="text" ></textarea>
-						</div>
-						
-						
-						<div class="5u">
-							<textarea name="opis" placeholder="Опис" type="text" ></textarea>
-						</div>
 					</div>
 					<div class="row">
 						
+						
+						<div class="5u">
+							<textarea name="opis" placeholder="Забелешки" type="text" ></textarea>
+						</div>
+					
+
+						
 					
 					</div>
+					
 					
 				</form>
 				</div>
