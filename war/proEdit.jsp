@@ -47,9 +47,16 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</head>
 	<body class="homepage">
+ <% Entity p = (Entity)request.getAttribute("pro"); %>
+			  <% 
+			  String currentItemsJ = ""; 
+			  if(null!= p.getProperty("items")){ 
+			  	currentItemsJ = ((Text) p.getProperty("items")).getValue();
+			  }	%>	
+	<script type="text/javascript">
 	
 	
-<script type="text/javascript">	
+
 function goToPage(url){
 	    
 		document.location.href = url;
@@ -67,7 +74,7 @@ $(document).ready(function() {
 </script>
 
 <jsp:include page="header.jsp" ></jsp:include>		
-			  <% Entity p = (Entity)request.getAttribute("pro"); %>
+			 
 		<!-- Features -->
 			 <div id="features-wrapper">
 				<section id="features" class="container">
@@ -79,13 +86,15 @@ $(document).ready(function() {
 							<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1"  value="Печати" onclick="alert('Print')"/>	
 					</div>
 					<div class="3u">
-							<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1"  value="Зачувај" onclick="alert('зачувај')"/>	
+							<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1"  value="Зачувај" onclick="saveProfaktura();"/>	
 					</div>
 				</div>
 				<div class="row">
 				<div class="10u" align="center" style="width: 100%">
-				<form id="addClientForm" method="post" action="addclient" >
-					<input name="proKey" type="hidden" type="text" value="<%=KeyFactory.keyToString(p.getKey()) %>" />
+				<form id="saveProfaktura" method="post" action="saveprofaktura" >
+					<input id="proKey" name="proKey" type="hidden" type="text" value="<%=KeyFactory.keyToString(p.getKey()) %>" />
+					<input id="clientid" name="clientid" type="hidden" type="text" value="<%=p.getProperty("clientid") %>" />
+					
 					<input name="sifra" type="hidden"  readonly="readonly" placeholder="Шифра" type="text" value="<%=p.getProperty("sifra") %>" />
 				
 					<div class="row">
@@ -174,11 +183,91 @@ $(document).ready(function() {
 		<!-- Footer -->
 <jsp:include page="footer.jsp"></jsp:include>
 <script type="text/javascript">
+var itemsArray = [];
+function addProizvod(proizvodID, proizvodName, cena) {
+	/*alert(proizvodID +proizvodName+cena);*/
+	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
+	$("#proizvodiSelected").append(
+			"<li><table><tr><td width='30%'>" + proizvodName
+					+ "</td><td width='30%'> " + cena
+					+ "</td></tr><table></li>");
+	var item = {
+		"id" : proizvodID,
+		"name" : proizvodName,
+		"cena" : cena
+	}
+	itemsArray.push(item);
+}
+
+$("#proizvoditel").change(function() {
+	callFilter();
+});
+
+$("#zemjapotelko").change(function() {
+	callFilter();
+});
+$("#kategorija").change(function() {
+	callFilter();
+});
+
+var curentItems;
+<%if(currentItemsJ.length()>0){%>
+curentItems = '<%=currentItemsJ%>';
+curentItems = JSON.parse(curentItems);
+<%}%>
+
+if(null!=curentItems){
+		for (var i=0;i<curentItems.items.length;i++){
+			var obj = curentItems.items[i];
+			addProizvod(curentItems.items[i].id,curentItems.items[i].name, curentItems.items[i].cena);
+		}
+}
+
+
+function saveProfaktura(){
+	
+	 
+	 var proJson = {
+		 "prokey" : $("#proKey").val() ,
+		 "clientid" :$("#clientid").val() ,
+		 "items" : itemsArray
+		 
+	 }
+	 
+	
+	 //alert(JSON.stringify(proJson));
+	 
+	 $.ajax({
+		  type: "POST",
+		  url: "saveprofaktura",
+		  data: JSON.stringify(proJson),
+		  success: function () {
+		        alert("Done!"); 
+		  }
+		 
+		});
+	 
+	 //alert(JSON.stringify(proJson));
+	 //alert(itemsArray);
+	 
+	 
+	
+}
+
+
+
+
 
 function addProizvod(proizvodID, proizvodName, cena){
 	/*alert(proizvodID +proizvodName+cena);*/
 	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
 	$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + proizvodName + "</td><td width='30%'> " + cena + "</td></tr><table></li>");
+	var item = {
+			"id" : proizvodID,
+			"name" : proizvodName,
+			"cena" : cena
+			}
+	itemsArray.push(item);
 }
 
 

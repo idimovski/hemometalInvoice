@@ -16,7 +16,7 @@
 					    <%Entity i = (Entity)request.getAttribute("client"); %>
 						<nav id="nav">
 							<ul>
-								<li><a class="icon fa-home" href="index.html"><span>Профактури</span></a>
+								<li><a class="icon fa-home" href="getallpro"><span>Профактури</span></a>
 								<%if (null!=i){ %>
 									<ul>
 										<li><a href="createPro?clientid=<%=KeyFactory.keyToString(i.getKey())%>">Нова Профактура за <%= i.getProperty("ime") %></a></li>

@@ -6,6 +6,35 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
+
+	<servlet>
+		<servlet-name>getpro</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.GetPro</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getpro</servlet-name>
+		<url-pattern>/getpro</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>getallpro</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.GetAllPro</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getallpro</servlet-name>
+		<url-pattern>/getallpro</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>saveprofaktura</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.SaveProfaktura</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>saveprofaktura</servlet-name>
+		<url-pattern>/saveprofaktura</url-pattern>
+	</servlet-mapping>
+
+
 	<servlet>
 		<servlet-name>searchItems</servlet-name>
 		<servlet-class>com.hemometal.invoice.mgmt.SearchItems</servlet-class>

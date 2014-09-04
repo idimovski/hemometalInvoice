@@ -1,8 +1,10 @@
 package com.hemometal.invoice.mgmt;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,6 +54,13 @@ public class CreateProfactura extends HttpServlet {
 		
 		pro.setProperty("clientName", client.getProperty("ime"));
 		pro.setProperty("clientSifra", client.getProperty("sifra"));
+		pro.setProperty("date", new Date());
+		SimpleDateFormat dt = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
+		dt.setTimeZone(TimeZone.getTimeZone("Europe/Skopje"));
+		pro.setProperty("dateF", dt.format(new Date()));
+		 
+		
+		datastore.put(pro);
 		
 		req.setAttribute("pro", pro);
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/proEdit.jsp");
@@ -69,78 +78,78 @@ public class CreateProfactura extends HttpServlet {
 		
 		//Chek if update or insert
 		
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		String itemkey = req.getParameter("itemKey");
-		
-		Entity item  = null;
-		if(null!=itemkey){
-			try {
-				item = datastore.get(KeyFactory.stringToKey(itemkey));
-			} catch (EntityNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}else{
-			
-			item = new Entity("item");
-		}
-		
-		
-		String sifra = req.getParameter("sifra");
-		String ime = req.getParameter("ime");
-		String cena = req.getParameter("cena");
-		String proizvoditel = req.getParameter("proizvoditel");
-		String zemjapotelko = req.getParameter("zemjapotelko");
-		String ddv = req.getParameter("ddv");
-		String kategorija = req.getParameter("kategorija");
-		String merka = req.getParameter("merka");
-		
-		
-		Text opis = new Text(req.getParameter("opis"));
-		
-		
-		
-		
-		
-		if(null == sifra){
-			KeyRange range = datastore.allocateIds("itemseq", 1);
-			Key theKey = null;
-			for (Iterator iterator = range.iterator(); iterator.hasNext();) {
-				theKey = (Key) iterator.next();
-				
-			}
-			item.setProperty("sifra", theKey.toString().replaceAll("\\D+",""));
-		}else{
-			
-			item.setProperty("sifra",sifra);
-		}
-		
-		
-		
-		item.setProperty("ime", ime);
-		item.setProperty("cena", cena);
-		item.setProperty("proizvoditel", proizvoditel);
-		item.setProperty("zemjapotelko", zemjapotelko);
-		item.setProperty("ddv", ddv);
-		item.setProperty("kategorija", kategorija);
-		item.setProperty("merka", merka);
-		item.setProperty("opis", opis);
-		item.setProperty("date", new Date());
-		
-		
-		Transaction tr = datastore.beginTransaction();
-		
-		datastore.put(tr,item);
-		
-		tr.commit();
-		
-		System.out.println("Saved item" + item.getProperty("sifra"));
-		
-		loadItemsInReq(req);
-		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/items.jsp");
-		 d.forward(req, resp);
-		
+//		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+//		String itemkey = req.getParameter("itemKey");
+//		
+//		Entity item  = null;
+//		if(null!=itemkey){
+//			try {
+//				item = datastore.get(KeyFactory.stringToKey(itemkey));
+//			} catch (EntityNotFoundException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}else{
+//			
+//			item = new Entity("item");
+//		}
+//		
+//		
+//		String sifra = req.getParameter("sifra");
+//		String ime = req.getParameter("ime");
+//		String cena = req.getParameter("cena");
+//		String proizvoditel = req.getParameter("proizvoditel");
+//		String zemjapotelko = req.getParameter("zemjapotelko");
+//		String ddv = req.getParameter("ddv");
+//		String kategorija = req.getParameter("kategorija");
+//		String merka = req.getParameter("merka");
+//		
+//		
+//		Text opis = new Text(req.getParameter("opis"));
+//		
+//		
+//		
+//		
+//		
+//		if(null == sifra){
+//			KeyRange range = datastore.allocateIds("itemseq", 1);
+//			Key theKey = null;
+//			for (Iterator iterator = range.iterator(); iterator.hasNext();) {
+//				theKey = (Key) iterator.next();
+//				
+//			}
+//			item.setProperty("sifra", theKey.toString().replaceAll("\\D+",""));
+//		}else{
+//			
+//			item.setProperty("sifra",sifra);
+//		}
+//		
+//		
+//		
+//		item.setProperty("ime", ime);
+//		item.setProperty("cena", cena);
+//		item.setProperty("proizvoditel", proizvoditel);
+//		item.setProperty("zemjapotelko", zemjapotelko);
+//		item.setProperty("ddv", ddv);
+//		item.setProperty("kategorija", kategorija);
+//		item.setProperty("merka", merka);
+//		item.setProperty("opis", opis);
+//		item.setProperty("date", new Date());
+//		
+//		
+//		Transaction tr = datastore.beginTransaction();
+//		
+//		datastore.put(tr,item);
+//		
+//		tr.commit();
+//		
+//		System.out.println("Saved item" + item.getProperty("sifra"));
+//		
+//		loadItemsInReq(req);
+//		
+//		RequestDispatcher d = getServletContext().getRequestDispatcher("/items.jsp");
+//		 d.forward(req, resp);
+//		
 		
 		
 	}
