@@ -1,6 +1,7 @@
 package com.hemometal.invoice.mgmt;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class SearchItems extends HttpServlet {
 	
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+	
 		String kategorija = req.getParameter("kat");
 		String zemja = req.getParameter("zem");
 		String proizvoditel = req.getParameter("pro");
@@ -46,18 +47,32 @@ public class SearchItems extends HttpServlet {
 		for (Iterator iterator = items.iterator(); iterator.hasNext();) {
 			Entity e = (Entity) iterator.next();
 			
+			System.out.println(e.getProperty("ime"));
 			
 			JSONObject item = new JSONObject();
+			item.put("dispID", e.getProperty("dispID"));
 			item.put("id", KeyFactory.keyToString(e.getKey()));
 			item.put("ime", e.getProperty("ime"));
 			item.put("cena", e.getProperty("cena"));
+			
+			item.put("merka", e.getProperty("merka"));
+			item.put("proizvoditel", e.getProperty("proizvoditel"));
+			item.put("zemjapotelko", e.getProperty("zemjapotelko"));
+			item.put("kategorija", e.getProperty("kategorija"));
+			item.put("ddv", e.getProperty("ddv"));
+	
 			results.add(item);
 		}
 		resultsObj.put("results",results);
+//		System.out.println(resultsObj.toString().getBytes());
 		System.out.println(resultsObj.toJSONString());
+
 		
-		PrintWriter pw =resp.getWriter();
-		pw.print(resultsObj.toJSONString());
+		
+		resp.setContentType("application/json;charset=UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		PrintWriter pw = resp.getWriter();
+		pw.write(resultsObj.toString());
 	
 		
 		
@@ -65,3 +80,4 @@ public class SearchItems extends HttpServlet {
 	}
 
 }
+

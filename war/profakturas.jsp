@@ -29,6 +29,8 @@
 		<script src="js/quickpager.jquery.js"></script>
 		<script src="js/jquery.quick.pagination.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
+		<script src="js/jquery.formatCurrency-1.4.0.min.js"></script>
+		
 		<noscript>
 			
 			<link rel="stylesheet" href="css/skel.css" />
@@ -46,6 +48,7 @@
 	
 	<script type="text/javascript">
 $(document).ready(function() {
+	$("span.money").formatCurrency();
 
 	// $("ul.pagination1").quickPagination();
 	
@@ -104,14 +107,17 @@ function openItem(key){
 								<td width="20%">
 									<label class="description">Шифра</label>
 								</td>
-								<td width="40%">
+								<td width="30%">
 									<label class="description" >Клиент</label>
 								</td>
-								<td width="20%">
+								<td width="20%" align='center'>
 									<label class="description" >Дата</label>
 								</td>
-								<td width="20%">
-									<label class="description" >Вкупна Сума</label>
+								<td width="20%" align='center'>
+									<label class="description" >Вкупна Сума (Ден)</label>
+								</td>
+								<td width="10%" align='center'>
+									<label class="description" >Исполнета</label>
 								</td>
 								
 							
@@ -138,16 +144,19 @@ function openItem(key){
 			    				
 								<tr style="cursor: pointer;">
 								<td width="20%">
-									<label id="rowid" class="description" style="cursor: pointer;"><%=e.getProperty("sifra") %></label>
+									<label id="rowid" class="description" style="cursor: pointer;"><%=e.getProperty("dispID") %></label>
 								</td>
-								<td width="40%">
+								<td width="30%">
 									<label id="" class="description" style="cursor: pointer;"><%=e.getProperty("clientName") %></label>
 								</td>
 								<td width="20%">
 									<label class="description" style="cursor: pointer;"><%=e.getProperty("dateF") %></label>
 								</td>
-								<td width="20%">
-									<label class="description" >TBD</label>
+								<td width="20%" align='right'>
+									<label class="description" ><span class="money"><%=e.getProperty("totalValue") %></span></label>
+								</td>
+								<td width="20%" align='right'>
+									<label class="description" >ТБД</label>
 								</td>
 								
 								
@@ -164,90 +173,12 @@ function openItem(key){
 				
 			<br/>
 			<ul class="actions">
-						<li><input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="submit" value="Нов Клиент" onclick="openDialog();"/></li>
+					<!-- 	<li><input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="submit" value="Нов Клиент" onclick="openDialog();"/></li> -->
 						 
 						
 			</ul>
 				
 				</section>		
-				<div style="display:none">
-				<div id="addclientdialog">
-				<form id="addClientForm" method="post" action="addclient" >
-				
-					
-					<div class="row">
-						
-						<div class="5u">
-							<input name="ime" placeholder="Име на Клиент" type="text" />
-						</div>
-						<div class="5u">
-							<input name="adresa" placeholder="Адреса" type="text" />
-						</div>
-						
-					
-					</div>
-					
-					<div class="row">
-						<div class="3u">
-							<input name="mesto" placeholder="Место" type="text" />
-						</div>
-						<div class="4u">
-							<input name="zipcode" placeholder="Пошт. Код" type="text" />
-						</div>
-						<div class="3u">
-							<input name="opstina" placeholder="Општина" type="text" />
-						</div>
-					
-					</div>
-					<div class="row">
-						<div class="5u">
-							<input name="smetka" placeholder="Жиро сметка" type="text" />
-						</div>
-						<div class="5u">
-							<input name="danbr" placeholder="Даночен Број" type="text" />
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="3u">
-							<input name="tel" placeholder="Телефон" type="text" />
-						</div>
-						<div class="4u">
-							<select name="vidnalice">
-								<option value="not seelcted" selected="selected">Вид на правно лице</option>
-								<option value="pravno" >Правно лице</option>
-								<option value="fizicko">Физичко лице</option>
-								<option value="individzem">Индивидуален земјоделец</option>
-								<option value="zemzadruga">Земјоделска задруга</option>
-							</select>
-							
-						</div>
-						<div class="3u">
-							<select name="tip">
-								<option value="vip" selected="selected">Vip Клиент</option>
-								<option value="basic" >Основен Клиент</option>
-							</select>
-						</div>
-					
-					
-					</div>
-					<div class="row">
-						
-						
-						<div class="5u">
-							<textarea name="opis" placeholder="Забелешки" type="text" ></textarea>
-						</div>
-					
-
-						
-					
-					</div>
-					
-					
-				</form>
-				</div>
-				</div>
-				
 			</div>
 			
 			

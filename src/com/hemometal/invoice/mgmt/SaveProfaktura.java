@@ -1,7 +1,8 @@
 package com.hemometal.invoice.mgmt;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 
 import javax.servlet.ServletException;
@@ -21,6 +22,7 @@ import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.datastore.Transaction;
+
 
 
 @SuppressWarnings("serial")
@@ -69,6 +71,7 @@ public class SaveProfaktura extends HttpServlet {
 
 		JSONArray items = (JSONArray) jsonObject.get("items");
 		String prokey =  jsonObject.get("prokey").toString();
+	
 		
 		  
 		
@@ -95,8 +98,15 @@ public class SaveProfaktura extends HttpServlet {
 //		profaktura.setProperty("items", new Text(items.toJSONString()));
 		profaktura.setProperty("items", new Text(jsonObject.toJSONString()));
 		
+		String totalValue= "0";
+		try {
+			totalValue = calculateTotalValue(profaktura);
 		
-		
+			profaktura.setProperty("totalValue", totalValue);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		
 		Transaction tr = datastore.beginTransaction();
@@ -105,10 +115,33 @@ public class SaveProfaktura extends HttpServlet {
 		
 		tr.commit();
 		
+		req.getSession().setAttribute("profakturatoprint", profaktura);
+		
 		System.out.println("Saved profaktura" + profaktura.getProperty("sifra"));
+		
+		PrintWriter pw = resp.getWriter();
+		pw.write(totalValue);
 		
 	
 		
 		
+	}
+
+
+	private String calculateTotalValue(Entity profaktura) throws ParseException {
+		JSONObject items =  (JSONObject) new JSONParser().parse(((Text) profaktura.getProperty("items")).getValue());
+		JSONArray itemsArray = (JSONArray) items.get("items");
+		
+		System.out.println(items);
+		
+		double total = 0;
+		for (Iterator iterator = itemsArray.iterator(); iterator.hasNext();) {
+			JSONObject item = (JSONObject) iterator.next();
+			double cena = new Double(item.get("cena").toString()).doubleValue();
+			total = total + cena;
+			
+		}
+		DecimalFormat df = new DecimalFormat("#.##");
+		return df.format(total);
 	}
 }

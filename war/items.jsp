@@ -29,6 +29,8 @@
 		<script src="js/quickpager.jquery.js"></script>
 		<script src="js/jquery.quick.pagination.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
+		<script src="js/jquery.formatCurrency-1.4.0.min.js"></script>
+		
 		<noscript>
 			
 			<link rel="stylesheet" href="css/skel.css" />
@@ -46,7 +48,7 @@
 	
 	<script type="text/javascript">
 $(document).ready(function() {
-
+	$("span.money").formatCurrency();
 	// $("ul.pagination1").quickPagination();
 	
 	$("ul.pagination1").quickPagination({pagerLocation:"both",pageSize:'20'});
@@ -139,18 +141,18 @@ function openItem(key){
 			    				
 								<tr style="cursor: pointer;">
 								<td width="10%">
-									<label id="rowid" class="description" style="cursor: pointer;"><%=e.getProperty("sifra") %></label>
+									<label id="rowid" class="description" style="cursor: pointer;"><%=e.getProperty("dispID") %></label>
 								</td>
 								<td width="40%">
 									<label id="" class="description" style="cursor: pointer;"><%=e.getProperty("ime") %></label>
 								</td>
-								<td width="20%">
-									<label class="description" style="cursor: pointer;"><%=e.getProperty("cena") %></label>
+								<td width="20%" align='right'>
+									<label class="description" style="cursor: pointer;"><span class="money" ><%=e.getProperty("cena") %></span></label>
 								</td>
-								<td width="10%">
+								<td width="10%" align='right'>
 									<label class="description" style="cursor: pointer;"><%=e.getProperty("proizvoditel") %></label>
 								</td>
-								<td width="10%">
+								<td width="10%" align='right'>
 									<label class="description" style="cursor: pointer;"><%=e.getProperty("zemjapotelko") %></label>
 								</td>
 								

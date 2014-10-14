@@ -63,7 +63,7 @@ function goToPage(url){
 				<section id="features" class="container">
 				<div class="row">
 					<div class="5u">
-						<h3 align="left">Клиент: <%=i.getProperty("sifra") %></h3>
+						<h3 align="left">Клиент: <%=i.getProperty("dispID") %> </h3>
 					</div>
 					<div class="5u">
 						<input class="button icon fa-file" style="cursor: pointer; width: 280px" id="saveForm1"  value="Нова Профактура" onclick="goToPage('createPro?clientid=<%=KeyFactory.keyToString(i.getKey()) %>')"/>

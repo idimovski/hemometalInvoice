@@ -22,6 +22,7 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.hemometal.invoice.mgmt.helper.SequenceHelper;
 
 @SuppressWarnings("serial")
 public class AddUpdateClient extends HttpServlet {
@@ -50,6 +51,8 @@ public class AddUpdateClient extends HttpServlet {
 		}else{
 			
 			item = new Entity("client");
+			SequenceHelper sh = new SequenceHelper();
+			item.setProperty("dispID", sh.getNext(sh.CLI_SEQ));
 		}
 		
 		

@@ -33,6 +33,8 @@
 		<script src="js/jquery.quick.pagination.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
 		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/jquery.formatCurrency-1.4.0.min.js"></script>
+		
 		
 		<noscript>
 			
@@ -55,7 +57,9 @@
 			  }	%>	
 	<script type="text/javascript">
 	
-	
+function printPro(){	
+	newwindow=window.open("/proPrint.jsp",'Печати','height=900px,width=850px');
+}
 
 function goToPage(url){
 	    
@@ -64,8 +68,10 @@ function goToPage(url){
 }
 
 $(document).ready(function() {
-	  
-	  callFilter();
+	callFilter();
+	$("span.money").formatCurrency();
+	
+	 
 	// $("ul.pagination1").quickPagination();
 	
 	//$("#itemsPagination").quickPagination({pagerLocation:"both",pageSize:'20'});
@@ -80,10 +86,10 @@ $(document).ready(function() {
 				<section id="features" class="container">
 				<div class="row">
 					<div class="4u">
-						<h3 align="left">Профактура: <%=p.getProperty("sifra") %></h3>
+						<h3 align="left">Профактура: <%=p.getProperty("dispID") %></h3>
 					</div>
 					<div class="4u">
-							<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1"  value="Печати" onclick="alert('Print')"/>	
+							<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1"  value="Печати" onclick="printPro()"/>	
 					</div>
 					<div class="3u">
 							<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1"  value="Зачувај" onclick="saveProfaktura();"/>	
@@ -110,6 +116,9 @@ $(document).ready(function() {
 						<ul id="proizvodiSelected" class='pagination1'>
 						</ul>
 						</div>
+					</div>
+					<div class="row">
+						<h3 align="left">Вкупна сума: <b><span id="vkupnaSuma" class="money"><%=p.getProperty("totalValue") %></span></b></h3>
 					</div>
 					<div class="row">
 					<div class="10u"></div>
@@ -182,21 +191,48 @@ $(document).ready(function() {
 
 		<!-- Footer -->
 <jsp:include page="footer.jsp"></jsp:include>
-<script type="text/javascript">
+<script type="text/javascript" charset="utf-8">
+function printProfaktura(){
+	saveProfaktura();
+}
+
+
 var itemsArray = [];
-function addProizvod(proizvodID, proizvodName, cena) {
+
+/*function addProizvod(proizvodID, proizvodName, cena){
+	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
+	$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + proizvodName + "</td><td width='30%' align='right'><span class=\"money\"> " + cena + "</span></td></tr><table></li>");
+	var item = {
+			"id" : proizvodID,
+			"name" : proizvodName,
+			"cena" : cena
+			}
+	itemsArray.push(item);
+	
+	$("span.money").formatCurrency();
+}
+*/
+
+ 
+function addProizvod(proizvodID, proizvodName, dispID,ddv,merka,  cena) {
 	/*alert(proizvodID +proizvodName+cena);*/
 	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
-	$("#proizvodiSelected").append(
+	$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + proizvodName + "</td><td width='30%' align='right'><span class=\"money\"> " + cena + "</span></td></tr><table></li>");
+	/*$("#proizvodiSelected").append(
 			"<li><table><tr><td width='30%'>" + proizvodName
 					+ "</td><td width='30%'> " + cena
-					+ "</td></tr><table></li>");
+					+ "</td></tr><table></li>");*/
 	var item = {
 		"id" : proizvodID,
 		"name" : proizvodName,
-		"cena" : cena
+		"cena" : cena,
+		"dispID" : dispID,
+		"ddv" : dispID,
+		"merka" : dispID			
 	}
+					
 	itemsArray.push(item);
+	$("span.money").formatCurrency();
 }
 
 $("#proizvoditel").change(function() {
@@ -219,8 +255,9 @@ curentItems = JSON.parse(curentItems);
 if(null!=curentItems){
 		for (var i=0;i<curentItems.items.length;i++){
 			var obj = curentItems.items[i];
-			addProizvod(curentItems.items[i].id,curentItems.items[i].name, curentItems.items[i].cena);
+			addProizvod(curentItems.items[i].id,curentItems.items[i].name,curentItems.items[i].dispID,curentItems.items[i].ddv,curentItems.items[i].merka, curentItems.items[i].cena);
 		}
+		 
 }
 
 
@@ -241,8 +278,11 @@ function saveProfaktura(){
 		  type: "POST",
 		  url: "saveprofaktura",
 		  data: JSON.stringify(proJson),
-		  success: function () {
-		        alert("Done!"); 
+		  success: function (response) {
+		      
+		        $("#vkupnaSuma").html(response);
+		    	$("span.money").formatCurrency();
+		    	alert("Save Done!"); 
 		  }
 		 
 		});
@@ -258,17 +298,6 @@ function saveProfaktura(){
 
 
 
-function addProizvod(proizvodID, proizvodName, cena){
-	/*alert(proizvodID +proizvodName+cena);*/
-	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
-	$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + proizvodName + "</td><td width='30%'> " + cena + "</td></tr><table></li>");
-	var item = {
-			"id" : proizvodID,
-			"name" : proizvodName,
-			"cena" : cena
-			}
-	itemsArray.push(item);
-}
 
 
 
@@ -290,25 +319,50 @@ var pro = $( "#proizvoditel" ).val();
 var zem = $( "#zemjapotelko" ).val();
 var kat = $( "#kategorija" ).val();
 
+
 	
-	var jqxhr = $.ajax( "searchItems?zem="+zem+"&pro="+pro+"&kat="+kat )
-	  .done(function(data) {	  
-		  var obj = jQuery.parseJSON(data);
-		  $("#itemsPagination").empty();
-		  jQuery.each( obj.results, function( i, val ) {
-			  
-			 
-			  $("#itemsPagination").append("<li onmouseup=\"addProizvod(\'" + val.id +  "\',\'" +val.ime + "\',\'" + val.cena + "\')\";><table><tr><td width='30%'>" + val.ime + "</td><td width='30%'> " + val.cena + "</td><td width='10%' ><a href=\"javascript:addProizvod(\'" + val.id +  "\',\'" +val.ime + "\',\'" + val.cena + "\')\"></a></td></tr><table></li>");
-			  
-			});
-		  
-		  
-		
-	    
-	  })
-	  .fail(function() {
-	    alert( "error" );
-	  });
+		jQuery.ajax({
+		    type: 'GET',
+		    encoding:"UTF-8",
+		    dataType:"json", 
+		    contentType: "application/json; charset=UTF-8",
+		    url: "searchItems?zem="+zem+"&pro="+pro+"&kat="+kat,
+		    success: function(data) {
+		        
+		    	
+		    	  console.log(data);
+				  var obj = data;
+				  //var obj = jQuery.parseJSON(data);
+				  $("#itemsPagination").empty();
+				  jQuery.each( obj.results, function( i, val ) {
+					  
+	/*				 	item.put("dispID", e.getProperty("dispID"));
+						item.put("id", KeyFactory.keyToString(e.getKey()));
+						item.put("ime", e.getProperty("ime"));
+						item.put("cena", e.getProperty("cena"));
+						
+						item.put("merka", e.getProperty("merka"));
+						item.put("proizvoditel", e.getProperty("proizvoditel"));
+						item.put("zemjapotelko", e.getProperty("zemjapotelko"));
+						item.put("kategorija", e.getProperty("kategorija"));
+						item.put("ddv", e.getProperty("ddv"));*/
+					  
+					 
+					  $("#itemsPagination").append("<li onmouseup=\"addProizvod(\'"
+							  + val.id +  "\',\'" 
+							  +val.ime + "\',\'"
+							  +val.dispID + "\',\'"
+							  +val.ddv + "\',\'"
+							  +val.merka + "\',\'"
+							  + val.cena  + "\')\";><table><tr><td width='30%'>" + val.ime + "</td><td width='30%' align='right'><span class=\"money\"> " + val.cena + "<span></td><td width='10%' ><a href=\"javascript:addProizvod(\'" + val.id +  "\',\'" +val.ime + "\',\'" + val.cena + "\')\"></a></td></tr><table></li>");
+					  
+					});
+					$("span.money").formatCurrency();
+				  
+		    	
+		    }
+		});
+	
 
 	
 

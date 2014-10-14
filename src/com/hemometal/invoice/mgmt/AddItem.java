@@ -22,6 +22,7 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.hemometal.invoice.mgmt.helper.SequenceHelper;
 
 @SuppressWarnings("serial")
 public class AddItem extends HttpServlet {
@@ -49,6 +50,7 @@ public class AddItem extends HttpServlet {
 		
 		//Chek if update or insert
 		
+		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		String itemkey = req.getParameter("itemKey");
 		
@@ -63,12 +65,14 @@ public class AddItem extends HttpServlet {
 		}else{
 			
 			item = new Entity("item");
+			SequenceHelper sh = new SequenceHelper();
+			item.setProperty("dispID", sh.getNext(sh.ITEM_SEQ));
 		}
 		
 		
 		String sifra = req.getParameter("sifra");
 		String ime = req.getParameter("ime");
-		String cena = req.getParameter("cena");
+		String cena = req.getParameter("cena").replaceAll("[^\\d.]", "");
 		String proizvoditel = req.getParameter("proizvoditel");
 		String zemjapotelko = req.getParameter("zemjapotelko");
 		String ddv = req.getParameter("ddv");

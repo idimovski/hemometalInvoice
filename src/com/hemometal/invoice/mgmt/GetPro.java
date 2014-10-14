@@ -45,6 +45,8 @@ public class GetPro extends HttpServlet {
 		
 		req.setAttribute("pro", pro);
 		
+		req.getSession().setAttribute("pro", pro);
+		
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/proEdit.jsp");
 		 d.forward(req, resp);
 	}

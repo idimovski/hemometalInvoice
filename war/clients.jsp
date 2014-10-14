@@ -137,7 +137,7 @@ function openItem(key){
 			    				
 								<tr style="cursor: pointer;">
 								<td width="10%">
-									<label id="rowid" class="description" style="cursor: pointer;"><%=e.getProperty("sifra") %></label>
+									<label id="rowid" class="description" style="cursor: pointer;"><%=e.getProperty("dispID") %></label>
 								</td>
 								<td width="40%">
 									<label id="" class="description" style="cursor: pointer;"><%=e.getProperty("ime") %></label>

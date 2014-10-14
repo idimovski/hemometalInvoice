@@ -32,6 +32,8 @@
 		<script src="js/quickpager.jquery.js"></script>
 		<script src="js/jquery.quick.pagination.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
+		<script src="js/jquery.formatCurrency-1.4.0.min.js"></script>
+		
 		<noscript>
 			
 			<link rel="stylesheet" href="css/skel.css" />
@@ -48,6 +50,16 @@
 	
 	
 	<script type="text/javascript">
+$(document).ready(function() {
+	  /*$('#cena').formatCurrency();
+	  $('#cena').blur(function()
+              {
+                  $('#cena').formatCurrency();
+              });*/
+	
+});
+	
+	
 function goToPage(url){
 	    
 		document.location.href = url;
@@ -63,7 +75,7 @@ function goToPage(url){
 			 	<section id="features" class="container">
 			 	<div class="row">
 			 		<div class="5u">
-			 			<h3 align="left">Производ: <%=i.getProperty("sifra") %></h3>	
+			 			<h3 align="left">Производ: <%=i.getProperty("dispID") %></h3>	
 			 		</div>
 			 		<div class="5u">
 			 			
@@ -80,7 +92,7 @@ function goToPage(url){
 							<input name="ime" placeholder="Име" type="text" value="<%=i.getProperty("ime") %>" />
 						</div>
 						<div class="5u">
-							<input name="cena" placeholder="Цена во Денари" type="text" value="<%=i.getProperty("cena") %>" />
+							<input id="cena" name="cena" placeholder="Цена во Денари" type="text" value="<%=i.getProperty("cena") %>" />
 						</div>
 					</div>
 					<div class="row">

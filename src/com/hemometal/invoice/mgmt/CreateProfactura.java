@@ -24,12 +24,17 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.hemometal.invoice.mgmt.helper.SequenceHelper;
 
 @SuppressWarnings("serial")
 public class CreateProfactura extends HttpServlet {
 	
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		SequenceHelper sh = new SequenceHelper();
+		long displayID = sh.getNext(sh.PRO_SEQ);
+		System.out.println(sh.PRO_SEQ + " " + displayID);
 		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		String clientid = req.getParameter("clientid");
@@ -39,6 +44,7 @@ public class CreateProfactura extends HttpServlet {
 		Key proKey =  datastore.put(pro);
 		
 		pro.setProperty("sifra", proKey.toString().replaceAll("\\D+",""));
+		pro.setProperty("dispID", new Long(displayID));
 		
 		
 		pro.setProperty("clientid", clientid);
@@ -58,11 +64,13 @@ public class CreateProfactura extends HttpServlet {
 		SimpleDateFormat dt = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
 		dt.setTimeZone(TimeZone.getTimeZone("Europe/Skopje"));
 		pro.setProperty("dateF", dt.format(new Date()));
+		pro.setProperty("totalValue", "0");
 		 
 		
 		datastore.put(pro);
 		
 		req.setAttribute("pro", pro);
+		req.getSession().setAttribute("pro", pro);
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/proEdit.jsp");
 		d.forward(req, resp);
 		
