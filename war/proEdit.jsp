@@ -118,7 +118,7 @@ $(document).ready(function() {
 						</div>
 					</div>
 					<div class="row">
-						<h3 align="left">Вкупна сума: <b><span id="vkupnaSuma" class="money"><%=p.getProperty("totalValue") %></span></b></h3>
+						<h3 align="left">Вкупна сума: <b><span id="vkupnaSuma" class="money"><%=p.getProperty("totalValue") %></span></b> (<b><span id="vkupnaSumaDDV" class="money"><%=p.getProperty("totalValueWithDDV") %></span></b>) </h3>
 					</div>
 					<div class="row">
 					<div class="10u"></div>
@@ -199,37 +199,17 @@ function printProfaktura(){
 
 var itemsArray = [];
 
-/*function addProizvod(proizvodID, proizvodName, cena){
-	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
-	$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + proizvodName + "</td><td width='30%' align='right'><span class=\"money\"> " + cena + "</span></td></tr><table></li>");
-	var item = {
-			"id" : proizvodID,
-			"name" : proizvodName,
-			"cena" : cena
-			}
-	itemsArray.push(item);
-	
-	$("span.money").formatCurrency();
-}
-*/
 
  
-function addProizvod(proizvodID, proizvodName, dispID,ddv,merka,  cena) {
+function addProizvod(item) {
 	/*alert(proizvodID +proizvodName+cena);*/
 	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
-	$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + proizvodName + "</td><td width='30%' align='right'><span class=\"money\"> " + cena + "</span></td></tr><table></li>");
+	$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + item.ime + "</td><td width='30%' align='right'><span class=\"money\"> " + item.cena + "</span></td></tr><table></li>");
 	/*$("#proizvodiSelected").append(
 			"<li><table><tr><td width='30%'>" + proizvodName
 					+ "</td><td width='30%'> " + cena
 					+ "</td></tr><table></li>");*/
-	var item = {
-		"id" : proizvodID,
-		"name" : proizvodName,
-		"cena" : cena,
-		"dispID" : dispID,
-		"ddv" : dispID,
-		"merka" : dispID			
-	}
+	
 					
 	itemsArray.push(item);
 	$("span.money").formatCurrency();
@@ -255,7 +235,7 @@ curentItems = JSON.parse(curentItems);
 if(null!=curentItems){
 		for (var i=0;i<curentItems.items.length;i++){
 			var obj = curentItems.items[i];
-			addProizvod(curentItems.items[i].id,curentItems.items[i].name,curentItems.items[i].dispID,curentItems.items[i].ddv,curentItems.items[i].merka, curentItems.items[i].cena);
+			addProizvod(obj);
 		}
 		 
 }
@@ -280,7 +260,8 @@ function saveProfaktura(){
 		  data: JSON.stringify(proJson),
 		  success: function (response) {
 		      
-		        $("#vkupnaSuma").html(response);
+		        $("#vkupnaSuma").html(response.totalValue);
+		        $("#vkupnaSumaDDV").html(response.totalValueDDV);
 		    	$("span.money").formatCurrency();
 		    	alert("Save Done!"); 
 		  }
@@ -312,6 +293,12 @@ $( "#kategorija" ).change(function() {
 	 callFilter();
 });
 
+var itemsResults = null;
+
+function addProizvodFromResults(resultsId){
+	addProizvod(itemsResults[resultsId]);
+}
+
 
 
 function callFilter(){
@@ -334,6 +321,7 @@ var kat = $( "#kategorija" ).val();
 				  var obj = data;
 				  //var obj = jQuery.parseJSON(data);
 				  $("#itemsPagination").empty();
+				  itemsResults = obj.results;
 				  jQuery.each( obj.results, function( i, val ) {
 					  
 	/*				 	item.put("dispID", e.getProperty("dispID"));
@@ -348,13 +336,7 @@ var kat = $( "#kategorija" ).val();
 						item.put("ddv", e.getProperty("ddv"));*/
 					  
 					 
-					  $("#itemsPagination").append("<li onmouseup=\"addProizvod(\'"
-							  + val.id +  "\',\'" 
-							  +val.ime + "\',\'"
-							  +val.dispID + "\',\'"
-							  +val.ddv + "\',\'"
-							  +val.merka + "\',\'"
-							  + val.cena  + "\')\";><table><tr><td width='30%'>" + val.ime + "</td><td width='30%' align='right'><span class=\"money\"> " + val.cena + "<span></td><td width='10%' ><a href=\"javascript:addProizvod(\'" + val.id +  "\',\'" +val.ime + "\',\'" + val.cena + "\')\"></a></td></tr><table></li>");
+					  $("#itemsPagination").append("<li onmouseup=\"addProizvodFromResults(\'" + i  + "\')\";><table><tr><td width='30%'>" + val.ime + "</td><td width='30%' align='right'><span class=\"money\"> " + val.cena + "<span></td><td width='10%' ></td></tr><table></li>");
 					  
 					});
 					$("span.money").formatCurrency();

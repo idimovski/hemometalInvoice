@@ -193,21 +193,21 @@ function openItem(key){
 						
 						<div class="4u">
 							<select name="proizvoditel">
-								<option selected="selected">Производител</option>
+								<option selected="selected">Друг Производител</option>
 								<option>Алплер</option>
 								<option>Зетор</option>
 							</select>
 						</div>
 						<div class="3u">
 							<select name="zemjapotelko">
-								<option selected="selected">Потекло</option>
+								<option selected="selected">Друга Земја</option>
 								<option>Турција</option>
 								<option>Чешка</option>
 							</select>
 						</div>
 						<div class="3u">
 							<select name="kategorija">
-								<option selected="selected">Категорија</option>
+								<option selected="selected" value="Друга">Друга Категорија</option>
 								<option value="traktori">Трактори</option>
 								<option value="plugovi">Плугови</option>
 								<option value="tanjirachi">Тањирачи</option>
@@ -236,15 +236,13 @@ function openItem(key){
 						
 						<div class="5u">
 							<select name="merka">
-								<option selected="selected">Единечна Мерка</option>
-								<option value="par">Парче</option>
+								<option value="par" selected="selected">Парче</option>
 								<option value="kg">Килограми</option>
 							</select>
 						</div>
 						<div class="5u">
 							<select name="ddv">
-								<option selected="selected">ДДВ %</option>
-								<option value="5">ДДВ 5%</option>
+								<option value="5" selected="selected">ДДВ 5%</option>
 								<option value="18">ДДВ 18%</option>
 							</select>
 						</div>

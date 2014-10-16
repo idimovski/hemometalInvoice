@@ -54,12 +54,16 @@ public class SearchItems extends HttpServlet {
 			item.put("id", KeyFactory.keyToString(e.getKey()));
 			item.put("ime", e.getProperty("ime"));
 			item.put("cena", e.getProperty("cena"));
+			item.put("cenaSoDanok", e.getProperty("cenaSoDanok"));
 			
 			item.put("merka", e.getProperty("merka"));
+			item.put("merkaUI", e.getProperty("merkaUI"));
+			
 			item.put("proizvoditel", e.getProperty("proizvoditel"));
 			item.put("zemjapotelko", e.getProperty("zemjapotelko"));
 			item.put("kategorija", e.getProperty("kategorija"));
 			item.put("ddv", e.getProperty("ddv"));
+			item.put("ddvUI", e.getProperty("ddvUI"));
 	
 			results.add(item);
 		}
@@ -80,4 +84,5 @@ public class SearchItems extends HttpServlet {
 	}
 
 }
+
 

@@ -99,10 +99,13 @@ public class SaveProfaktura extends HttpServlet {
 		profaktura.setProperty("items", new Text(jsonObject.toJSONString()));
 		
 		String totalValue= "0";
+		String totalValueWithDDV= "0";
 		try {
-			totalValue = calculateTotalValue(profaktura);
+			totalValue = calculateTotalValue(profaktura, false);
+			totalValueWithDDV = calculateTotalValue(profaktura, true);
 		
 			profaktura.setProperty("totalValue", totalValue);
+			profaktura.setProperty("totalValueWithDDV", totalValueWithDDV);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,12 +118,15 @@ public class SaveProfaktura extends HttpServlet {
 		
 		tr.commit();
 		
-		req.getSession().setAttribute("profakturatoprint", profaktura);
+		req.getSession().setAttribute("pro", profaktura);
 		
 		System.out.println("Saved profaktura" + profaktura.getProperty("sifra"));
 		
 		PrintWriter pw = resp.getWriter();
-		pw.write(totalValue);
+		String response = "{\"totalValue\" : \""+totalValue+"\" , \"totalValueDDV\":\""+totalValueWithDDV+"\" }";
+		resp.setContentType("application/json");
+		resp.setStatus(200);
+		pw.write(response);
 		
 	
 		
@@ -128,7 +134,7 @@ public class SaveProfaktura extends HttpServlet {
 	}
 
 
-	private String calculateTotalValue(Entity profaktura) throws ParseException {
+	private String calculateTotalValue(Entity profaktura, boolean withDDV) throws ParseException {
 		JSONObject items =  (JSONObject) new JSONParser().parse(((Text) profaktura.getProperty("items")).getValue());
 		JSONArray itemsArray = (JSONArray) items.get("items");
 		
@@ -137,7 +143,12 @@ public class SaveProfaktura extends HttpServlet {
 		double total = 0;
 		for (Iterator iterator = itemsArray.iterator(); iterator.hasNext();) {
 			JSONObject item = (JSONObject) iterator.next();
-			double cena = new Double(item.get("cena").toString()).doubleValue();
+			double cena = 0;
+			if(withDDV == false){
+				cena = new Double(item.get("cena").toString()).doubleValue();
+			}else{
+				cena = new Double(item.get("cenaSoDanok").toString()).doubleValue();	
+			}
 			total = total + cena;
 			
 		}
@@ -145,3 +156,4 @@ public class SaveProfaktura extends HttpServlet {
 		return df.format(total);
 	}
 }
+

@@ -65,6 +65,8 @@ public class CreateProfactura extends HttpServlet {
 		dt.setTimeZone(TimeZone.getTimeZone("Europe/Skopje"));
 		pro.setProperty("dateF", dt.format(new Date()));
 		pro.setProperty("totalValue", "0");
+		pro.setProperty("totalValueWithDDV", "0");
+
 		 
 		
 		datastore.put(pro);

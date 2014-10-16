@@ -100,16 +100,37 @@ public class AddItem extends HttpServlet {
 		}
 		
 		
+		float danok = 0;
+		String ddvUI = "unknown";
+		if("5".equalsIgnoreCase(ddv)){
+				danok = (float) 0.05;
+				ddvUI = "5%";
+				
+		}
+		if("18".equalsIgnoreCase(ddv)){
+			danok = (float) 0.18;
+			ddvUI = "18%";
+		}
+		
+		float cenaFloat = new Float(cena);
+		float cenaSoDanok = cenaFloat + (cenaFloat * danok);
+		
+		String merkaUI = setMerkaUI(merka);
 		
 		item.setProperty("ime", ime);
 		item.setProperty("cena", cena);
+		item.setProperty("cenaSoDanok", new Float(cenaSoDanok));
 		item.setProperty("proizvoditel", proizvoditel);
 		item.setProperty("zemjapotelko", zemjapotelko);
 		item.setProperty("ddv", ddv);
+		item.setProperty("ddvUI", ddvUI);
+		item.setProperty("ddvFloat", new Float(danok));
 		item.setProperty("kategorija", kategorija);
 		item.setProperty("merka", merka);
+		item.setProperty("merkaUI", merkaUI);
 		item.setProperty("opis", opis);
 		item.setProperty("date", new Date());
+		
 		
 		
 		Transaction tr = datastore.beginTransaction();
@@ -126,6 +147,15 @@ public class AddItem extends HttpServlet {
 		 d.forward(req, resp);
 		
 		
+		
+	}
+
+
+	private String setMerkaUI(String merka) {
+		if (merka.equals("par")) return "Парче";
+		if (merka.equals("kg")) return "Килограми";
+		
+		return "undefined";
 		
 	}
 }
