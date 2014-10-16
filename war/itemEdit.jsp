@@ -34,14 +34,13 @@
 		<script src="js/jquery-ui.js"></script>
 		<script src="js/jquery.formatCurrency-1.4.0.min.js"></script>
 		
-		<noscript>
+		
+		<link rel="stylesheet" href="css/skel.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style-desktop.css" />
 			
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-desktop.css" />
 			
-			
-		</noscript>
+		
 		<link rel="stylesheet" href="css/jquery-ui.css" />
 		<link rel="stylesheet" href="css/pagingStyles.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
@@ -81,7 +80,7 @@ function goToPage(url){
 			 			
 			 		</div>	
 			 	</div>
-				
+				<div class="row">
 				<div class="10u" align="center" style="width: 100%">	
 					<form id="addItemForm" method="post" action="addItem">
 					<input name="itemKey" type="hidden" type="text" value="<%=KeyFactory.keyToString(i.getKey()) %>" />
@@ -166,6 +165,7 @@ function goToPage(url){
 					
 					</div>	
 				</form>
+				</div>
 				</div>
 			</section>		
 			</div>

@@ -29,6 +29,11 @@ import com.google.appengine.api.datastore.Transaction;
 public class SaveProfaktura extends HttpServlet {
 	
 	
+	private String _cenaSoDDV = "cenaSoDDV";
+	private String _cena = "cena";
+	private String _samoDanok = "samoDanok";
+	
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		/*loadItemsInReq(req);
@@ -56,8 +61,8 @@ public class SaveProfaktura extends HttpServlet {
 			BufferedReader reader = req.getReader();
 			while ((line = reader.readLine()) != null)
 				jb.append(line);
-		} catch (Exception e) { /* report an error */
-		}
+			} catch (Exception e) { /* report an error */
+			}
 		System.out.println(jb.toString());
 		try {
 			jsonObject = (JSONObject) new JSONParser().parse(jb.toString());
@@ -98,14 +103,20 @@ public class SaveProfaktura extends HttpServlet {
 //		profaktura.setProperty("items", new Text(items.toJSONString()));
 		profaktura.setProperty("items", new Text(jsonObject.toJSONString()));
 		
+		
+		
 		String totalValue= "0";
 		String totalValueWithDDV= "0";
+		String totalDDV= "0";
 		try {
-			totalValue = calculateTotalValue(profaktura, false);
-			totalValueWithDDV = calculateTotalValue(profaktura, true);
+			totalValue = calculateTotalValue(profaktura, _cena);
+			totalValueWithDDV = calculateTotalValue(profaktura, _cenaSoDDV);
+			totalDDV = calculateTotalValue(profaktura, _samoDanok);
 		
 			profaktura.setProperty("totalValue", totalValue);
 			profaktura.setProperty("totalValueWithDDV", totalValueWithDDV);
+			profaktura.setProperty("totalDDV", totalDDV);
+			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -134,21 +145,23 @@ public class SaveProfaktura extends HttpServlet {
 	}
 
 
-	private String calculateTotalValue(Entity profaktura, boolean withDDV) throws ParseException {
+	private String calculateTotalValue(Entity profaktura, String type) throws ParseException {
 		JSONObject items =  (JSONObject) new JSONParser().parse(((Text) profaktura.getProperty("items")).getValue());
 		JSONArray itemsArray = (JSONArray) items.get("items");
 		
-		System.out.println(items);
+		//System.out.println(items);
 		
 		double total = 0;
 		for (Iterator iterator = itemsArray.iterator(); iterator.hasNext();) {
 			JSONObject item = (JSONObject) iterator.next();
 			double cena = 0;
-			if(withDDV == false){
+			if(type == _cena)
 				cena = new Double(item.get("cena").toString()).doubleValue();
-			}else{
-				cena = new Double(item.get("cenaSoDanok").toString()).doubleValue();	
-			}
+			if(type == _cenaSoDDV)
+				cena = new Double(item.get("cenaSoDanok").toString()).doubleValue();
+			if(type == _samoDanok)
+				cena = new Double(item.get("samoDanok").toString()).doubleValue();
+			
 			total = total + cena;
 			
 		}

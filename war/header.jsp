@@ -7,6 +7,7 @@
 			<div id="header-wrapper">
 				<div id="header" class="container">
 					
+					
 					<!-- Logo -->
 					<!-- 
 						<h1 id="logo"><a href="index.html">Hemometal</a></h1>

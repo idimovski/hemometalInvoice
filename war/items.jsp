@@ -31,14 +31,13 @@
 		<script src="js/jquery-ui.js"></script>
 		<script src="js/jquery.formatCurrency-1.4.0.min.js"></script>
 		
-		<noscript>
+		
 			
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-desktop.css" />
+		<link rel="stylesheet" href="css/skel.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style-desktop.css" />
 			
 			
-		</noscript>
 		<link rel="stylesheet" href="css/jquery-ui.css" />
 		<link rel="stylesheet" href="css/pagingStyles.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
@@ -109,13 +108,13 @@ function openItem(key){
 								<td width="40%">
 									<label class="description" >Име</label>
 								</td>
-								<td width="20%">
+								<td width="20%" align='right'>
 									<label class="description" >Цена</label>
 								</td>
-								<td width="10%">
+								<td width="10%" align='right'>
 									<label class="description" >Производител</label>
 								</td>
-								<td width="10%">
+								<td width="10%" align='right'>
 									<label class="description" >Потекло</label>
 								</td>
 								

@@ -95,7 +95,7 @@
 
 			.row + .row > * {
 				/* padding: (gutters) 0 0 (gutters) */
-				padding: 20px 0 0 40px;
+				padding: 20px 0 0 40px !important;
 			}
 
 			.row {

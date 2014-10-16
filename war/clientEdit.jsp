@@ -32,14 +32,14 @@
 		<script src="js/quickpager.jquery.js"></script>
 		<script src="js/jquery.quick.pagination.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
-		<noscript>
+		
 			
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-desktop.css" />
+		<link rel="stylesheet" href="css/skel.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style-desktop.css" />
 			
 			
-		</noscript>
+		
 		<link rel="stylesheet" href="css/jquery-ui.css" />
 		<link rel="stylesheet" href="css/pagingStyles.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->

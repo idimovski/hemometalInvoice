@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>			
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<!-- 			
 			<div id="footer-wrapper">
 				<div id="footer" class="container">
 					<header>
@@ -73,3 +74,4 @@
 					</ul>
 				</div>
 			</div>
+			 -->

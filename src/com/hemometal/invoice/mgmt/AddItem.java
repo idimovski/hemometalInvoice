@@ -114,12 +114,14 @@ public class AddItem extends HttpServlet {
 		
 		float cenaFloat = new Float(cena);
 		float cenaSoDanok = cenaFloat + (cenaFloat * danok);
+		float danokValue = cenaFloat * danok;
 		
 		String merkaUI = setMerkaUI(merka);
 		
 		item.setProperty("ime", ime);
 		item.setProperty("cena", cena);
 		item.setProperty("cenaSoDanok", new Float(cenaSoDanok));
+		item.setProperty("samoDanok", new Float(danokValue));
 		item.setProperty("proizvoditel", proizvoditel);
 		item.setProperty("zemjapotelko", zemjapotelko);
 		item.setProperty("ddv", ddv);
@@ -159,3 +161,4 @@ public class AddItem extends HttpServlet {
 		
 	}
 }
+

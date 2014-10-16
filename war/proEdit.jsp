@@ -35,15 +35,11 @@
 		<script src="js/jquery-1.10.2.min.js"></script>
 		<script src="js/jquery.formatCurrency-1.4.0.min.js"></script>
 		
+		<link rel="stylesheet" href="css/skel.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style-desktop.css" />
+			
 		
-		<noscript>
-			
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-desktop.css" />
-			
-			
-		</noscript>
 		<link rel="stylesheet" href="css/jquery-ui.css" />
 		<link rel="stylesheet" href="css/pagingStyles.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
@@ -85,10 +81,11 @@ $(document).ready(function() {
 			 <div id="features-wrapper">
 				<section id="features" class="container">
 				<div class="row">
-					<div class="4u">
-						<h3 align="left">Профактура: <%=p.getProperty("dispID") %></h3>
+					<div class="5u">
+						<h4 align="left">Профактура: <%=p.getProperty("dispID") %></h4>
 					</div>
-					<div class="4u">
+					
+					<div class="3u">
 							<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1"  value="Печати" onclick="printPro()"/>	
 					</div>
 					<div class="3u">
@@ -102,14 +99,22 @@ $(document).ready(function() {
 					<input id="clientid" name="clientid" type="hidden" type="text" value="<%=p.getProperty("clientid") %>" />
 					
 					<input name="sifra" type="hidden"  readonly="readonly" placeholder="Шифра" type="text" value="<%=p.getProperty("sifra") %>" />
-				
 					<div class="row">
-						<div class="5u" align="left">
-							<label class="description" >Клиент: <%=p.getProperty("clientName") %> (<%=p.getProperty("clientSifra") %>)</label> 
+						<div class="6u" align="left">
+							<label class="description" ><h4> Клиент: <%=p.getProperty("clientName") %> (<%=p.getProperty("clientDispID") %>)</h4></label> 
+						</div>
+						<div class="3u">
+							<input class="button icon fa-file" style="cursor: pointer;" id=""  value="Исполни" onclick=""/>	
+						</div>
+						<div class="2u" align="right">
+							<select id="sezona" name="sezona">
+								<option selected="selected">2014-2015</option>
+								<option>2015-2016</option>
+							</select>
 						</div>
 					</div>
 					<div class="row">
-						<h3 align="left">Производи во Профактура:</h3>
+						<div>Производи во Профактура:</div>
 					</div>
 					<div class="row">
 						<div class="10u">
@@ -125,9 +130,9 @@ $(document).ready(function() {
 					</div>
 					<input id="proizvodiids" type="hidden"/>
 					<div class="row">
-						<h3 align="left">Одберете Производи:</h3>
-					</div>
-					<div class="row">
+						<div class="2u">
+						Производи: 
+						</div>
 						<div class="3u">
 							<select id="proizvoditel" name="proizvoditel">
 								<option>Алплер</option>
@@ -135,14 +140,14 @@ $(document).ready(function() {
 								
 							</select>
 						</div>
-						<div class="3u">
+						<div class="2u">
 							<select id="zemjapotelko" name="zemjapotelko">
 								<option>Турција</option>
 								<option>Чешка</option>
 							</select>
 						</div>
 					
-						<div class="4u">
+						<div class="3u">
 							<select id="kategorija" name="kategorija" title="Kfdsfasdsfk">
 								<option value="traktori">Трактори</option>
 								<option value="plugovi">Плугови</option>
@@ -204,7 +209,9 @@ var itemsArray = [];
 function addProizvod(item) {
 	/*alert(proizvodID +proizvodName+cena);*/
 	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
-	$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + item.ime + "</td><td width='30%' align='right'><span class=\"money\"> " + item.cena + "</span></td></tr><table></li>");
+	//$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + item.ime + "</td><td width='30%' align='right'><span class=\"money\"> " + item.cena + "</span></td></tr><table></li>");
+	$( "#proizvodiSelected").append("<li><table border='1'><tr><td width='10%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='20%' align='right'><span class=\"money\"> " + item.cena + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='10%' ></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
+	
 	/*$("#proizvodiSelected").append(
 			"<li><table><tr><td width='30%'>" + proizvodName
 					+ "</td><td width='30%'> " + cena
@@ -322,7 +329,7 @@ var kat = $( "#kategorija" ).val();
 				  //var obj = jQuery.parseJSON(data);
 				  $("#itemsPagination").empty();
 				  itemsResults = obj.results;
-				  jQuery.each( obj.results, function( i, val ) {
+				  jQuery.each( obj.results, function( i, item ) {
 					  
 	/*				 	item.put("dispID", e.getProperty("dispID"));
 						item.put("id", KeyFactory.keyToString(e.getKey()));
@@ -336,7 +343,7 @@ var kat = $( "#kategorija" ).val();
 						item.put("ddv", e.getProperty("ddv"));*/
 					  
 					 
-					  $("#itemsPagination").append("<li onmouseup=\"addProizvodFromResults(\'" + i  + "\')\";><table><tr><td width='30%'>" + val.ime + "</td><td width='30%' align='right'><span class=\"money\"> " + val.cena + "<span></td><td width='10%' ></td></tr><table></li>");
+					  $("#itemsPagination").append("<li onmouseup=\"addProizvodFromResults(\'" + i  + "\')\";><table border='1'><tr><td width='10%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='20%' align='right'><span class=\"money\"> " + item.cena + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='10%' ></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
 					  
 					});
 					$("span.money").formatCurrency();

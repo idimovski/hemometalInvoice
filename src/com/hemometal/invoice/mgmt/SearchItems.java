@@ -64,6 +64,8 @@ public class SearchItems extends HttpServlet {
 			item.put("kategorija", e.getProperty("kategorija"));
 			item.put("ddv", e.getProperty("ddv"));
 			item.put("ddvUI", e.getProperty("ddvUI"));
+			item.put("samoDanok", e.getProperty("samoDanok"));
+			
 	
 			results.add(item);
 		}

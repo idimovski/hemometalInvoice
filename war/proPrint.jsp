@@ -79,7 +79,7 @@ function addProizvodToPrint(item){
 			<td width="50%">
 			<table width=100% style="border-width: thin;	border-spacing: 0px;	border-style: outset; border-spacing: 1px">
 				<tr>
-					<td>Датум: <%=p.getProperty("dateF")%>
+					<td>Датум: <%=p.getProperty("dateOnly")%>
 					</td>
 				</tr>
 				<tr>
@@ -135,12 +135,42 @@ function addProizvodToPrint(item){
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td style="font-weight: bold;">Вкупна Цена: &nbsp; <span class="money"> <%=p.getProperty("totalValue") %> </span></td>
+			<td></td>
+			<td>
+			<table border="1" style="border-width: thin;border-spacing: 0px;border-style: outset;width: 100% ; " border="0">
+				<tr>
+					<td style="font-weight: bold;" align="right">Износ без ДДВ:</td><td align="right"><span class="money"><%=p.getProperty("totalValue") %></span></td>
+				</tr>
+				<tr>
+					<td style="font-weight: bold;" align="right">ДДВ:</td><td align="right"><span class="money"> <%=p.getProperty("totalDDV") %></span></td>
+				</tr>
+				<tr>
+					<td style="font-weight: bold;" align="right">За наплата:</td><td align="right"><font style="font-weight: bold;"><span class="money"> <%=p.getProperty("totalValueWithDDV") %></span></font></td>
+				</tr>
+				
+			</table>
+			</td>
 		</tr>
-		<tr>
-			<td style="font-weight: bold;">Вкупна Цена со ДДВ:&nbsp;<span class="money"> <%=p.getProperty("totalValueWithDDV") %></span></td>
+		<tr><td>&nbsp;</td></tr>
+		<tr><td colspan="2">За ненавремено плаќање на фактура пресметуваме законска затезна камата.</td></tr>
+		<tr><td colspan="2">Рекламации се примаат во рок од 8 дена.</td></tr>
+		<tr><td colspan="2">Во случај на спор надлежен е Oсновниот суд во Битола.</td></tr>
+		<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
+		<tr><td colspan="2">
+			<table style="width: 100%" border="0" >
+			<tr align="center">
+			<td>_________________________</td>
+			<td>_________________________</td>
+			<td>_________________________</td>
+			</tr>
+			<tr align="center">
+			<td>Примил</td>
+			<td>Директор</td>
+			<td>Фактурирал</td>
+			</tr>
+			</table>
+		</td>
 		</tr>
-		
 	</table>
 
 

@@ -60,10 +60,13 @@ public class CreateProfactura extends HttpServlet {
 		
 		pro.setProperty("clientName", client.getProperty("ime"));
 		pro.setProperty("clientSifra", client.getProperty("sifra"));
+		pro.setProperty("clientDispID", client.getProperty("dispID"));
 		pro.setProperty("date", new Date());
-		SimpleDateFormat dt = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
+		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		SimpleDateFormat dOnly = new SimpleDateFormat("dd/MM/yyyy");
 		dt.setTimeZone(TimeZone.getTimeZone("Europe/Skopje"));
 		pro.setProperty("dateF", dt.format(new Date()));
+		pro.setProperty("dateOnly", dOnly.format(new Date()));
 		pro.setProperty("totalValue", "0");
 		pro.setProperty("totalValueWithDDV", "0");
 
