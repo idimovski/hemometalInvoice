@@ -154,15 +154,24 @@ public class SaveProfaktura extends HttpServlet {
 		double total = 0;
 		for (Iterator iterator = itemsArray.iterator(); iterator.hasNext();) {
 			JSONObject item = (JSONObject) iterator.next();
+			int kolicina = new Integer(item.get("kolicina").toString()).intValue();
 			double cena = 0;
-			if(type == _cena)
+			if(type == _cena){
 				cena = new Double(item.get("cenaBezDanok").toString()).doubleValue();
-			if(type == _cenaSoDDV)
-				cena = new Double(item.get("cenaSoDanok").toString()).doubleValue();
-			if(type == _samoDanok)
-				cena = new Double(item.get("samoDanok").toString()).doubleValue();
+				total = total + (cena * kolicina);
+			}
 			
-			total = total + cena;
+			if(type == _cenaSoDDV){
+				cena = new Double(item.get("cenaSoDanok").toString()).doubleValue();
+				total = total + (cena * kolicina);
+			}
+			
+			if(type == _samoDanok){
+				cena = new Double(item.get("samoDanok").toString()).doubleValue();
+				total = total+cena;
+			}
+			
+		
 			
 		}
 		DecimalFormat df = new DecimalFormat("#.##");

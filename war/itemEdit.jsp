@@ -91,7 +91,7 @@ function goToPage(url){
 							<input name="ime" placeholder="Име" type="text" value="<%=i.getProperty("ime") %>" />
 						</div>
 						<div class="5u">
-							<input id="cenaSoDDV" name="cenaSoDDV" placeholder="Цена во Денари со ДДВ" type="text" value="<%=i.getProperty("cena") %>" />
+							<input id="cenaSoDDV" name="cenaSoDDV" placeholder="Цена во Денари со ДДВ" type="text" value="<%=i.getProperty("cenaSoDanok") %>" />
 						</div>
 					</div>
 					<div class="row">
