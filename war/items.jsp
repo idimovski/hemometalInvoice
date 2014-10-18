@@ -146,7 +146,7 @@ function openItem(key){
 									<label id="" class="description" style="cursor: pointer;"><%=e.getProperty("ime") %></label>
 								</td>
 								<td width="20%" align='right'>
-									<label class="description" style="cursor: pointer;"><span class="money" ><%=e.getProperty("cena") %></span></label>
+									<label class="description" style="cursor: pointer;"><span class="money" ><%=e.getProperty("cenaSoDanok") %></span></label>
 								</td>
 								<td width="10%" align='right'>
 									<label class="description" style="cursor: pointer;"><%=e.getProperty("proizvoditel") %></label>
@@ -185,7 +185,7 @@ function openItem(key){
 							<input name="ime" placeholder="Име" type="text" />
 						</div>
 						<div class="5u">
-							<input name="cena" placeholder="Цена во Денари" type="text" />
+							<input name="cenaSoDDV" placeholder="Цена во Денари со ДДВ" type="text" />
 						</div>
 					</div>
 					<div class="row">

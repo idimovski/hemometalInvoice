@@ -51,9 +51,12 @@ function addProizvodToPrint(item){
 			+"<td>"+item.dispID+"</td>"
 			+"<td align='left'>"+item.ime+"</td>"
 			+"<td>"+item.merkaUI+"</td>"
-			+"<td>"+"1"+"</td>"
-			+"<td align='right'><span class=\"money\">"+item.cena+"</span>&nbsp;</td>"
+			+"<td>"+item.kolicina+"</td>"
+			+"<td align='right'><span class=\"money\">"+item.cenaBezDanok+"</span>&nbsp;</td>"
+			+"<td align='right'><span class=\"money\">"+item.cenaBezDanok * item.kolicina+"</span>&nbsp;</td>"
+			+"<td align='right'><span class=\"money\">"+item.samoDanok+"</span>&nbsp;</td>"
 			+"<td align='right'><span class=\"money\">"+item.cenaSoDanok+"</span>&nbsp;</td>"
+			+"<td align='right'><span class=\"money\">"+item.cenaSoDanok * item.kolicina +"</span>&nbsp;</td>"
 			+"<td align='right'>"+item.ddvUI+"</td>"
 			+"");
 			
@@ -83,19 +86,18 @@ function addProizvodToPrint(item){
 					</td>
 				</tr>
 				<tr>
-					<td>Про-Фактура: <%=p.getProperty("dispID")%>
-					</td>
+					<td><font style="font-weight: bold;">Про-Фактура: <%=p.getProperty("dispID")%></font></td>
 				</tr>
 				<tr>
-					<td>Клиент: <%=p.getProperty("clientName")%>
+					<td>&nbsp;</td>
 				</tr>
 			</table>
 			</td>
 			<td width="50%">
 				<table style="border-width: thin;	border-spacing: 0px;	border-style: outset; border-spacing: 1px" width=100%>
-					<tr><td>Велковски Димитар</td></tr>
-					<tr><td>Кравари</td></tr>
-					<tr><td>Битола</td></tr>
+					<tr><td><%=p.getProperty("clientName")%>&nbsp;<%=p.getProperty("clientPrezime")%></td></tr>
+					<tr><td><%=p.getProperty("clientadresa")%></td></tr>
+					<tr><td><%=p.getProperty("clientmesto")%></td></tr>
 				</table>
 			</td>
 		</tr>
@@ -117,14 +119,23 @@ function addProizvodToPrint(item){
 				<table id='proizvodiSelected' border="1" style="border-width: thin;	border-spacing: 0px;	border-style: outset; " width = '100%'>
 				<thead style="font-weight: bold;">
 					<tr align="center">
-						<td>Р.б</td>
-						<td>Шифра</td>
-						<td>Назив на производот</td>
-						<td>Е М</td>
-						<td>Количина</td>
-						<td>Цена</td>
-						<td>Цена со данок</td>
-						<td>ДДВ %</td>
+						<td rowspan="2">Р.б</td>
+						<td rowspan="2">Шифра</td>
+						<td rowspan="2">Назив на производот</td>
+						<td rowspan="2">Е М</td>
+						<td rowspan="2">Кол</td>
+						<td colspan="2">Цена без данок</td>
+						
+						<td rowspan="2">ДДВ по единицак</td>
+						<td colspan="2">Цена со данок</td>
+						
+						<td rowspan="2">ДДВ %</td>
+					</tr>
+					<tr align="center">
+						<td>Парче</td>
+						<td>Вкупно</td>
+						<td>Парче</td>
+						<td>Вкупно</td>
 					</tr>
 				</thead>
 				</table>

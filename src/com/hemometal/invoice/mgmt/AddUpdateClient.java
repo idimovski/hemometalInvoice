@@ -58,6 +58,9 @@ public class AddUpdateClient extends HttpServlet {
 		
 		String sifra = req.getParameter("sifra");
 		String ime = req.getParameter("ime");
+		String prezime = req.getParameter("prezime");
+		String imenafirma = req.getParameter("imenafirma");
+
 		String smetka = req.getParameter("smetka");
 		String tip = req.getParameter("tip");
 		String mesto = req.getParameter("mesto");
@@ -92,6 +95,8 @@ public class AddUpdateClient extends HttpServlet {
 		
 		
 		item.setProperty("ime", ime);
+		item.setProperty("prezime", prezime);
+		item.setProperty("imenafirma", imenafirma);
 		item.setProperty("adresa", adresa);
 		
 		item.setProperty("mesto", mesto);
@@ -127,3 +132,4 @@ public class AddUpdateClient extends HttpServlet {
 		
 	}
 }
+

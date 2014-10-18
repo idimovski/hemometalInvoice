@@ -81,8 +81,17 @@ function goToPage(url){
 								<input name="ime" placeholder="Име на Клиент" type="text"  value="<%=i.getProperty("ime") %>" />
 							</div>
 							<div class="5u">
+								<input name=prezime placeholder="Презиме" type="text"  value="<%=i.getProperty("prezime") %>" />
+							</div>
+											
+						</div>
+						<div class="row">
+							<div class="5u">
+								<input name="imenafirma" placeholder="Име на Фирма" type="text"  value="<%=i.getProperty("imenafirma") %>" />
+							</div>
+							<div class="5u">
 								<input name="adresa" placeholder="Адреса" type="text" value="<%=i.getProperty("adresa")%>" />
-							</div>						
+							</div>		
 						</div>
 						<div class="row">
 							<div class="3u">

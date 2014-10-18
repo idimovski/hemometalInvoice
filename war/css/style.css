@@ -373,7 +373,7 @@
 				box-shadow: inset 2px 2px 0px 0px rgba(0,0,0,0.1);
 				border-radius: 4px;
 				line-height: 1.25em;
-				padding: 0.75em 1em 0.75em 1em;
+				padding: 0.25em 0.25em 0.25em 0.25em;
 				-moz-transition: background-color 0.25s ease-in-out;
 				-webkit-transition: background-color 0.25s ease-in-out;
 				-o-transition: background-color 0.25s ease-in-out;
@@ -496,9 +496,9 @@
 			border-radius: 4px;
 			border: 0;
 			outline: 0;
-			font-size: 1em;
+			font-size: 0.25em;
 			box-shadow: 0.125em 0.175em 0 0 rgba(0,0,0,0.125);
-			font-weight: 600;
+			font-weight: 500;
 			-moz-transition: all 0.25s ease-in-out;
 			-webkit-transition: all 0.25s ease-in-out;
 			-o-transition: all 0.25s ease-in-out;
@@ -510,7 +510,7 @@
 			.button.icon:before
 			{
 				position: relative;
-				padding-right: 0.75em;
+				padding-right: 0.1em;
 				opacity: 0.5;
 				top: 0.05em;
 			}

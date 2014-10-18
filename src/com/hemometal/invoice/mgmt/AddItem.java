@@ -72,7 +72,7 @@ public class AddItem extends HttpServlet {
 		
 		String sifra = req.getParameter("sifra");
 		String ime = req.getParameter("ime");
-		String cena = req.getParameter("cena").replaceAll("[^\\d.]", "");
+		String cenaSoDDV = req.getParameter("cenaSoDDV").replaceAll("[^\\d.]", "");
 		String proizvoditel = req.getParameter("proizvoditel");
 		String zemjapotelko = req.getParameter("zemjapotelko");
 		String ddv = req.getParameter("ddv");
@@ -103,24 +103,27 @@ public class AddItem extends HttpServlet {
 		float danok = 0;
 		String ddvUI = "unknown";
 		if("5".equalsIgnoreCase(ddv)){
-				danok = (float) 0.05;
+				danok = (float) 1.05;
 				ddvUI = "5%";
 				
 		}
 		if("18".equalsIgnoreCase(ddv)){
-			danok = (float) 0.18;
+			danok = (float) 1.18;
 			ddvUI = "18%";
 		}
 		
-		float cenaFloat = new Float(cena);
-		float cenaSoDanok = cenaFloat + (cenaFloat * danok);
-		float danokValue = cenaFloat * danok;
+		float cenaFloat = new Float(cenaSoDDV);
+		float cenaBezDanok = cenaFloat / danok;
+		float danokValue = cenaFloat - cenaBezDanok;
+
 		
 		String merkaUI = setMerkaUI(merka);
 		
 		item.setProperty("ime", ime);
-		item.setProperty("cena", cena);
-		item.setProperty("cenaSoDanok", new Float(cenaSoDanok));
+
+		
+		item.setProperty("cenaBezDanok", cenaBezDanok);
+		item.setProperty("cenaSoDanok", new Float(cenaSoDDV));
 		item.setProperty("samoDanok", new Float(danokValue));
 		item.setProperty("proizvoditel", proizvoditel);
 		item.setProperty("zemjapotelko", zemjapotelko);
@@ -161,4 +164,5 @@ public class AddItem extends HttpServlet {
 		
 	}
 }
+
 

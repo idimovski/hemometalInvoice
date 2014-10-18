@@ -156,7 +156,7 @@ public class SaveProfaktura extends HttpServlet {
 			JSONObject item = (JSONObject) iterator.next();
 			double cena = 0;
 			if(type == _cena)
-				cena = new Double(item.get("cena").toString()).doubleValue();
+				cena = new Double(item.get("cenaBezDanok").toString()).doubleValue();
 			if(type == _cenaSoDDV)
 				cena = new Double(item.get("cenaSoDanok").toString()).doubleValue();
 			if(type == _samoDanok)

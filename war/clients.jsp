@@ -176,7 +176,16 @@ function openItem(key){
 					<div class="row">
 						
 						<div class="5u">
-							<input name="ime" placeholder="Име на Клиент" type="text" />
+							<input name="ime" placeholder="Име" type="text" />
+						</div>
+							
+						<div class="5u">
+							<input name="prezime" placeholder="Презиме" type="text" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="5u">
+							<input name="imenafirma" placeholder="Име на фирма" type="text" />
 						</div>
 						<div class="5u">
 							<input name="adresa" placeholder="Адреса" type="text" />

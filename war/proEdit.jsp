@@ -38,7 +38,6 @@
 		<link rel="stylesheet" href="css/skel.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/style-desktop.css" />
-			
 		
 		<link rel="stylesheet" href="css/jquery-ui.css" />
 		<link rel="stylesheet" href="css/pagingStyles.css" />
@@ -103,14 +102,14 @@ $(document).ready(function() {
 						<div class="6u" align="left">
 							<label class="description" ><h4> Клиент: <%=p.getProperty("clientName") %> (<%=p.getProperty("clientDispID") %>)</h4></label> 
 						</div>
-						<div class="3u">
-							<input class="button icon fa-file" style="cursor: pointer;" id=""  value="Исполни" onclick=""/>	
-						</div>
 						<div class="2u" align="right">
 							<select id="sezona" name="sezona">
 								<option selected="selected">2014-2015</option>
 								<option>2015-2016</option>
 							</select>
+						</div>
+						<div class="3u" style="vertical-align: center">
+							<input type="checkbox" name="ispolneta" value="ispolneta">Одобрена<br>
 						</div>
 					</div>
 					<div class="row">
@@ -204,13 +203,19 @@ function printProfaktura(){
 
 var itemsArray = [];
 
+function changeKolicina(itemID, input, rowid){
+	
+	itemsArray[rowid].kolicina = input.value;
+	
+		
+}
 
  
-function addProizvod(item) {
+function addProizvod(item,rowid) {
 	/*alert(proizvodID +proizvodName+cena);*/
 	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
 	//$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + item.ime + "</td><td width='30%' align='right'><span class=\"money\"> " + item.cena + "</span></td></tr><table></li>");
-	$( "#proizvodiSelected").append("<li><table border='1'><tr><td width='10%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='20%' align='right'><span class=\"money\"> " + item.cena + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='10%' ></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
+	$( "#proizvodiSelected").append("<li><table border='1'><tr><td width='10%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='10%'><input type='text' name='kolicina' value='"+item.kolicina+"' onChange='changeKolicina("+item.dispID+",this,"+rowid+")';/></td><td width='20%' align='right'><span class=\"money\"> " + item.cenaBezDanok + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
 	
 	/*$("#proizvodiSelected").append(
 			"<li><table><tr><td width='30%'>" + proizvodName
@@ -242,7 +247,7 @@ curentItems = JSON.parse(curentItems);
 if(null!=curentItems){
 		for (var i=0;i<curentItems.items.length;i++){
 			var obj = curentItems.items[i];
-			addProizvod(obj);
+			addProizvod(obj,i);
 		}
 		 
 }
@@ -303,7 +308,7 @@ $( "#kategorija" ).change(function() {
 var itemsResults = null;
 
 function addProizvodFromResults(resultsId){
-	addProizvod(itemsResults[resultsId]);
+	addProizvod(itemsResults[resultsId],resultsId);
 }
 
 
@@ -343,7 +348,7 @@ var kat = $( "#kategorija" ).val();
 						item.put("ddv", e.getProperty("ddv"));*/
 					  
 					 
-					  $("#itemsPagination").append("<li onmouseup=\"addProizvodFromResults(\'" + i  + "\')\";><table border='1'><tr><td width='10%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='20%' align='right'><span class=\"money\"> " + item.cena + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='10%' ></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
+					  $("#itemsPagination").append("<li onmouseup=\"addProizvodFromResults(\'" + i  + "\')\";><table border='1'><tr><td width='10%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='20%' align='right'><span class=\"money\"> " + item.cenaBezDanok + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='10%' ></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
 					  
 					});
 					$("span.money").formatCurrency();

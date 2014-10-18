@@ -59,6 +59,13 @@ public class CreateProfactura extends HttpServlet {
 		
 		
 		pro.setProperty("clientName", client.getProperty("ime"));
+		pro.setProperty("clientPrezime", client.getProperty("prezime"));
+		pro.setProperty("clientFirmaName", client.getProperty("imenafirma"));
+		
+		pro.setProperty("clientadresa", client.getProperty("adresa"));
+		pro.setProperty("clientopstina", client.getProperty("opstina"));
+		pro.setProperty("clientmesto", client.getProperty("mesto"));
+		
 		pro.setProperty("clientSifra", client.getProperty("sifra"));
 		pro.setProperty("clientDispID", client.getProperty("dispID"));
 		pro.setProperty("date", new Date());
