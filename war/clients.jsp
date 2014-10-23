@@ -79,8 +79,17 @@ function openDialog(){
 }
 
 function openItem(key){
-    
 	document.location.href = "getClient?clientKey=" + key;
+}
+function barajklienti(){
+	
+	var ime = $("#ime").val();
+	var prezime = $("#prezime").val();
+	var imenafirma = $("#imenafirma").val();
+	var mesto = $("#mesto").val();
+	var opstina = $("#opstina").val();	
+	
+	document.location.href = "getclients?ime=" + ime+"&imenafirma="+imenafirma + "&prezime=" + prezime + "&mesto="+mesto + "&opstina="+opstina;
 	
 }
 
@@ -100,6 +109,30 @@ function openItem(key){
 						<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="submit" value="Нов Клиент" onclick="openDialog();"/>
 					</div>					
 				</div>
+				
+				<form action="">
+					<div class="row">
+						<div  class="2u">
+							<input id="ime" placeholder="Име" type="text" />
+						</div>
+						<div  class="2u">
+							<input id="prezime" placeholder="Презиме" type="text" />
+							
+						</div>
+						<div  class="2u">
+							<input id="imenafirma" placeholder="Име на фирма" type="text" />
+						</div>
+						<div  class="2u">
+							<input id="mesto" placeholder="Село" type="text" />
+						</div>
+						<div  class="2u">
+							<input id="opstina" placeholder="Град или Општина" type="text" />
+						</div>
+						<div  class="2u">
+							<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="button" value="Барај" onclick="barajklienti();"/>
+						</div>
+					</div>
+				</form>
 				
 				<div class="row"></div>
 				<div class="row">

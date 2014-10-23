@@ -85,6 +85,17 @@ function openItem(key){
 	alert(key + sifra + ime + cena+proizvoditel+opis);
 }
 
+function barajproizvod(){
+	
+	var kategorija = $("#kategorija").val();
+	var proizvoditel = $("#proizvoditel").val();
+	var zemjapotelko = $("#zemjapotelko").val();
+
+	
+	document.location.href = "addItem?kategorija=" + kategorija+"&proizvoditel="+proizvoditel + "&zemjapotelko=" + zemjapotelko;
+	
+}
+
    
 </script>
 
@@ -94,14 +105,59 @@ function openItem(key){
 			 <div id="features-wrapper">
 				<section id="features" class="container">
 				<div class="row">
-				<div class="5u">
-					<h3 align="left">Производи:</h3>
-				</div>
-				<div class="5u">
-					<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="submit" value="Нов Производ" onclick="openDialog();"/>
+					<div class="5u">
+						<h3 align="left">Производи:</h3>
+					</div>
+					<div class="5u">
+						<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="submit" value="Нов Производ" onclick="openDialog();"/>
+					</div>
+					
 				</div>
 				
+				<form id="search" method="" action="" style="width: 100%" >
+				<div class="row">
+					<div class="2u">
+						<select id="kategorija">
+								<option selected="selected" value="">Сите Категории</option>
+								<option value="traktori">Трактори</option>
+								<option value="plugovi">Плугови</option>
+								<option value="tanjirachi">Тањирачи</option>
+								<option value="krimeri">Кримери</option>
+								<option value="rotacionikodachki">Ротациони Кодачки</option>
+								<option value="frezi">Фрези</option>
+								<option value="megurednifrezi">Меѓуредни фрези</option>
+								<option value="sealki">Сеалки</option>
+								<option value="prikolici">Приколици</option>
+								<option value="balirachki">Блирачки</option>
+								<option value="senoprevrtuvacki">Сенопревртувачки</option>
+								<option value="niskiprskalki">Ниски Прскалки</option>
+								<option value="amortizeri">Атомизери</option>
+								<option value="mulceri">Мулчери</option>
+								<option value="opgradina">Опрема за градина</option>
+								<option value="opfarmi">Опрема за фарми</option>
+								<option value="opnavodnuvanje">Опрема за наводнување</option>
+								<option value="oplozarstvo">Опрема за овоштарство и лозарство</option>
+							</select>
+					</div>
+					<div class="2u">
+						<select id="proizvoditel">
+							<option selected="selected" value="">Сите Прозиводители</option>
+							<option>Алплер</option>
+							<option>Зетор</option>
+						</select>
+					</div>
+					<div class="2u">
+						<select id="zemjapotelko">
+							<option selected="selected" value="">Сите Земји</option>
+							<option>Турција</option>
+							<option>Чешка</option>
+						</select>
+					</div>
+					<div class="2u">
+						<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="button" value="Барај" onclick="barajproizvod();"/>
+					</div>
 				</div>
+				</form>
 				<div class="row"></div>
 				<div class="row">
 				<div class="10u" style="width: 100% " align="center">

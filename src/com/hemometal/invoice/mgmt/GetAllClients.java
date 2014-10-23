@@ -21,6 +21,7 @@ import com.google.appengine.api.datastore.KeyRange;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.datastore.Transaction;
+import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
 @SuppressWarnings("serial")
@@ -31,7 +32,23 @@ public class GetAllClients extends HttpServlet {
 		
 		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		
 		Query query = new Query("client").addSort("date", SortDirection.DESCENDING);
+		
+		String ime = req.getParameter("ime");
+		String prezime = req.getParameter("prezime");
+		String imenafirma = req.getParameter("imenafirma");
+		String mesto = req.getParameter("mesto");
+		String opstina = req.getParameter("opstina");
+	
+		
+		if((!("".equals(ime)))&&(null!= ime))	query.addFilter("imeLC", FilterOperator.EQUAL, ime.toLowerCase());
+		if((!("".equals(prezime)))&&(null!= prezime))	query.addFilter("prezimeLC", FilterOperator.EQUAL, prezime.toLowerCase());
+		if((!("".equals(imenafirma)))&&(null!= imenafirma))	query.addFilter("imenafirmaLC", FilterOperator.EQUAL, imenafirma.toLowerCase());
+		if((!("".equals(mesto)))&&(null!= mesto))	query.addFilter("mestoLC", FilterOperator.EQUAL, mesto.toLowerCase());
+		if((!("".equals(opstina)))&&(null!= opstina))	query.addFilter("opstinaLC", FilterOperator.EQUAL, opstina.toLowerCase());
+
+		
 		List<Entity> items = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(1000));
 		
 		req.setAttribute("clientList", items);

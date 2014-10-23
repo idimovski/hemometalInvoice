@@ -21,6 +21,7 @@ import com.google.appengine.api.datastore.KeyRange;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.datastore.Transaction;
+import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.hemometal.invoice.mgmt.helper.SequenceHelper;
 
@@ -38,8 +39,23 @@ public class AddItem extends HttpServlet {
 
 
 	private void loadItemsInReq(HttpServletRequest req) {
+		
+
+		String kategorija = req.getParameter("kategorija");
+		String proizvoditel = req.getParameter("proizvoditel");
+		String zemjapotelko = req.getParameter("zemjapotelko");
+
+		
+		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Query query = new Query("item").addSort("date", SortDirection.DESCENDING);
+		
+		if((!("".equals(kategorija)))&&(null!= kategorija))	query.addFilter("kategorija", FilterOperator.EQUAL, kategorija.toLowerCase());
+		if((!("".equals(proizvoditel)))&&(null!= proizvoditel))	query.addFilter("proizvoditel", FilterOperator.EQUAL, proizvoditel);
+		if((!("".equals(zemjapotelko)))&&(null!= zemjapotelko))	query.addFilter("zemjapotelko", FilterOperator.EQUAL, zemjapotelko);
+		
+		
+		
 		List<Entity> items = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(1000));
 		
 		req.setAttribute("itemsList", items);
