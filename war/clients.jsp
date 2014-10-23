@@ -54,7 +54,7 @@ $(document).ready(function() {
 	//$("ul.pagination2").quickPager({pagerLocation:"both"});
 	
 	 $( "#addclientdialog" ).dialog({
-	 	    height: 700,
+	 	    height: 650,
 	 	    width:800,
 	 	    modal: false,
 	 	   draggable: false,
@@ -92,7 +92,14 @@ function openItem(key){
 		<!-- Features -->
 			 <div id="features-wrapper">
 				<section id="features" class="container">
-				<h3 align="left">Клиенти:</h3>
+				<div class="row">
+					<div class="5u">
+						<h3 align="left">Клиенти:</h3>
+					</div>
+					<div class="5u">
+						<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="submit" value="Нов Клиент" onclick="openDialog();"/>
+					</div>					
+				</div>
 				
 				<div class="row"></div>
 				<div class="row">
@@ -104,8 +111,11 @@ function openItem(key){
 								<td width="10%">
 									<label class="description">Шифра</label>
 								</td>
-								<td width="40%">
+								<td width="30%">
 									<label class="description" >Име</label>
+								</td>
+								<td width="20%">
+									<label class="description" >Фирма</label>
 								</td>
 								<td width="20%">
 									<label class="description" >Телефон</label>
@@ -139,8 +149,11 @@ function openItem(key){
 								<td width="10%">
 									<label id="rowid" class="description" style="cursor: pointer;"><%=e.getProperty("dispID") %></label>
 								</td>
-								<td width="40%">
-									<label id="" class="description" style="cursor: pointer;"><%=e.getProperty("ime") %></label>
+								<td width="30%">
+									<label id="" class="description" style="cursor: pointer;"><%=e.getProperty("ime") %>&nbsp; <%=e.getProperty("prezime") %></label>
+								</td>
+								<td width="20%">
+										<label id="" class="description" style="cursor: pointer;"><%=e.getProperty("imenafirma") %></label>
 								</td>
 								<td width="20%">
 									<label class="description" style="cursor: pointer;"><%=e.getProperty("tel") %></label>
@@ -196,13 +209,13 @@ function openItem(key){
 					
 					<div class="row">
 						<div class="3u">
-							<input name="mesto" placeholder="Место" type="text" />
+							<input name="mesto" placeholder="Село" type="text" />
 						</div>
 						<div class="4u">
 							<input name="zipcode" placeholder="Пошт. Код" type="text" />
 						</div>
 						<div class="3u">
-							<input name="opstina" placeholder="Општина" type="text" />
+							<input name="opstina" placeholder="Град или Општина" type="text" />
 						</div>
 					
 					</div>

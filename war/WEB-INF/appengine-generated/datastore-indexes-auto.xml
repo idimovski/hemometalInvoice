@@ -1,4 +1,23 @@
-<!-- Indices written at Sat, 18 Oct 2014 15:02:25 UTC -->
+<!-- Indices written at Thu, 23 Oct 2014 02:33:02 UTC -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 2 times in query history -->
+    <datastore-index kind="pro" ancestor="false" source="auto">
+        <property name="clientNameLC" direction="asc"/>
+        <property name="date" direction="desc"/>
+    </datastore-index>
+
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="pro" ancestor="false" source="auto">
+        <property name="clientFirmaNameLC" direction="asc"/>
+        <property name="date" direction="desc"/>
+    </datastore-index>
+
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="pro" ancestor="false" source="auto">
+        <property name="clientPrezimeLC" direction="asc"/>
+        <property name="date" direction="desc"/>
+    </datastore-index>
+
+</datastore-indexes>

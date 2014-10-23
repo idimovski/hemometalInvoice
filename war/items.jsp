@@ -55,8 +55,8 @@ $(document).ready(function() {
 	//$("ul.pagination2").quickPager({pagerLocation:"both"});
 	
 	 $( "#additemdialog" ).dialog({
-	 	    height: 700,
-	 	    width:800,
+	 	    height: 500,
+	 	    width:850,
 	 	    modal: false,
 	 	   draggable: false,
 	 	   	autoOpen: false,
@@ -93,8 +93,15 @@ function openItem(key){
 		<!-- Features -->
 			 <div id="features-wrapper">
 				<section id="features" class="container">
-				<h3 align="left">Производи:</h3>
+				<div class="row">
+				<div class="5u">
+					<h3 align="left">Производи:</h3>
+				</div>
+				<div class="5u">
+					<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="submit" value="Нов Производ" onclick="openDialog();"/>
+				</div>
 				
+				</div>
 				<div class="row"></div>
 				<div class="row">
 				<div class="10u" style="width: 100% " align="center">
@@ -250,7 +257,7 @@ function openItem(key){
 					<div class="row">
 						
 						
-						<div class="5u">
+						<div class="8u">
 							<textarea name="opis" placeholder="Опис" type="text" ></textarea>
 						</div>
 					</div>

@@ -168,7 +168,7 @@ public class SaveProfaktura extends HttpServlet {
 			
 			if(type == _samoDanok){
 				cena = new Double(item.get("samoDanok").toString()).doubleValue();
-				total = total+cena;
+				total = total + (cena * kolicina);
 			}
 			
 		

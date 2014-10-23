@@ -95,13 +95,13 @@ function goToPage(url){
 						</div>
 						<div class="row">
 							<div class="3u">
-								<input name="mesto" placeholder="Место" type="text"  value="<%=i.getProperty("mesto")%>" />
+								<input name="mesto" placeholder="Село" type="text"  value="<%=i.getProperty("mesto")%>" />
 							</div>
 							<div class="4u">
 								<input name="zipcode" placeholder="Поштенски Код" type="text"   value="<%=i.getProperty("zipcode")%>"  />
 							</div>
 							<div class="3u">
-								<input name="opstina" placeholder="Општина" type="text"   value="<%=i.getProperty("opstina")%>"  />
+								<input name="opstina" placeholder="Град или Општина" type="text"   value="<%=i.getProperty("opstina")%>"  />
 							</div>
 						</div>
 						<div class="row">

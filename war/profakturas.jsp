@@ -87,6 +87,21 @@ function openItem(key){
 	
 }
 
+function novaprofaktura(){
+	document.location.href = "getclients";
+}
+
+function barajprofaktura(){
+	
+	var sifra = $("#sifra").val();
+	var ime = $("#ime").val();
+	var prezime = $("#prezime").val();
+	var firma = $("#firma").val();
+	
+	document.location.href = "getallpro?sifra=" + sifra+"&ime="+ime + "&prezime=" + prezime + "&firma="+firma;
+	
+}
+
    
 </script>
 
@@ -95,9 +110,38 @@ function openItem(key){
 		<!-- Features -->
 			 <div id="features-wrapper">
 				<section id="features" class="container">
-				<h3 align="left">Профактури:</h3>
-				
-				<div class="row"></div>
+				<div class="row">
+					<div class="5u">
+						<h3 align="left">Профактури:</h3>
+					</div>
+					<div class="5u">
+						<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="button" value="Нова Профактура" onclick="novaprofaktura();"/>
+					</div>
+				</div>
+				<div class="row">
+				</div>
+				<form action="">
+					<div class="row">
+						<div class="2u">
+							<input id="sifra" placeholder="Шифра" type="text"  value="" />
+						</div>
+						<div class="2u">
+							<input id="ime" placeholder="Име на Клиент" type="text"  value="" />
+						</div>
+						<div class="2u">
+							<input id="prezime" placeholder="Презиме на Клиент" type="text"  value="" />
+						</div>
+						<div class="2u">
+							<input id="firma" placeholder="Фирма" type="text"  value="" />
+						</div>
+						<div class="2u">
+							<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1" type="button" value="Барај" onclick="barajprofaktura();"/>
+						</div>
+						
+					</div>			
+				</form>			
+				<div class="row">
+				</div>
 				<div class="row">
 				<div class="10u" style="width: 100% " align="center">
 				
@@ -147,7 +191,7 @@ function openItem(key){
 									<label id="rowid" class="description" style="cursor: pointer;"><%=e.getProperty("dispID") %></label>
 								</td>
 								<td width="30%">
-									<label id="" class="description" style="cursor: pointer;"><%=e.getProperty("clientName") %></label>
+									<label id="" class="description" style="cursor: pointer;"><%=e.getProperty("clientName") %>&nbsp; <%=e.getProperty("clientPrezime") %>&nbsp; <%=e.getProperty("clientFirmaName") %></label>
 								</td>
 								<td width="20%">
 									<label class="description" style="cursor: pointer;"><%=e.getProperty("dateF") %></label>

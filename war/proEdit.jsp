@@ -204,8 +204,10 @@ function printProfaktura(){
 var itemsArray = [];
 
 function changeKolicina(itemID, input, rowid){
-	
+
 	itemsArray[rowid].kolicina = input.value;
+	
+	
 	
 		
 }
@@ -215,7 +217,8 @@ function addProizvod(item,rowid) {
 	/*alert(proizvodID +proizvodName+cena);*/
 	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
 	//$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + item.ime + "</td><td width='30%' align='right'><span class=\"money\"> " + item.cena + "</span></td></tr><table></li>");
-	$( "#proizvodiSelected").append("<li><table border='1'><tr><td width='10%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='10%'><input type='text' name='kolicina' value='"+item.kolicina+"' onChange='changeKolicina("+item.dispID+",this,"+rowid+")';/></td><td width='20%' align='right'><span class=\"money\"> " + item.cenaBezDanok + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
+	itemsArray.push(item);
+	$( "#proizvodiSelected").append("<li><table border='1'><tr><td width='10%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='10%'><input type='text' name='kolicina' value='"+item.kolicina+"' onChange='changeKolicina("+item.dispID+",this,"+(itemsArray.length - 1)+")';/></td><td width='20%' align='right'><span class=\"money\"> " + item.cenaBezDanok + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
 	
 	/*$("#proizvodiSelected").append(
 			"<li><table><tr><td width='30%'>" + proizvodName
@@ -223,7 +226,7 @@ function addProizvod(item,rowid) {
 					+ "</td></tr><table></li>");*/
 	
 					
-	itemsArray.push(item);
+
 	$("span.money").formatCurrency();
 }
 
@@ -245,9 +248,9 @@ curentItems = JSON.parse(curentItems);
 <%}%>
 
 if(null!=curentItems){
-		for (var i=0;i<curentItems.items.length;i++){
-			var obj = curentItems.items[i];
-			addProizvod(obj,i);
+		for (var ii=0;ii<curentItems.items.length;ii++){
+			var obj = curentItems.items[ii];
+			addProizvod(obj,ii);
 		}
 		 
 }

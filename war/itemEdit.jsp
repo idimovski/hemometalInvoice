@@ -153,7 +153,7 @@ function goToPage(url){
 					</div>
 					<div class="row">
 						
-						<div class="5u">
+						<div class="8u">
 							<textarea rows="2" name="opis" placeholder="Опис" type="text" ><%=( (Text) i.getProperty("opis")).getValue()%></textarea>
 						</div>
 					</div>

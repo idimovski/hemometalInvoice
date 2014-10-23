@@ -99,8 +99,19 @@ public class AddUpdateClient extends HttpServlet {
 		item.setProperty("imenafirma", imenafirma);
 		item.setProperty("adresa", adresa);
 		
-		item.setProperty("mesto", mesto);
-		item.setProperty("opstina", opstina);
+		item.setProperty("mesto", mesto);//село
+		item.setProperty("opstina", opstina); // град
+		
+		item.setProperty("imeLC", ime.toLowerCase());
+		item.setProperty("prezimeLC", prezime.toLowerCase());
+		item.setProperty("imenafirmaLC", imenafirma.toLowerCase());
+		item.setProperty("adresaLC", adresa.toLowerCase());
+		
+		item.setProperty("mestoLC", mesto.toLowerCase());
+		item.setProperty("opstinaLC", opstina.toLowerCase());
+		
+		
+		
 		item.setProperty("zipcode", zipcode);
 		item.setProperty("smetka", smetka);
 		item.setProperty("danbr", danbr);

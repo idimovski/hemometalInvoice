@@ -48,8 +48,8 @@ function addProizvodToPrint(item){
 	
 	$( "#proizvodiSelected").append("<tr align='center'>"
 			+"<td>"+j+"</td>"
-			+"<td>"+item.dispID+"</td>"
-			+"<td align='left'>"+item.ime+"</td>"
+			//+"<td>"+item.dispID+"</td>"
+			+"<td align='left' norwap='nowrap'>"+item.ime+"</td>"
 			+"<td>"+item.merkaUI+"</td>"
 			+"<td>"+item.kolicina+"</td>"
 			+"<td align='right'><span class=\"money\">"+item.cenaBezDanok+"</span>&nbsp;</td>"
@@ -70,7 +70,7 @@ function addProizvodToPrint(item){
 
 
 </script>
-	<table border="0" width='800px' style="font-family: sans-serif;">
+	<table border="0" width='800px' style="font-family: sans-serif;font-size: small;">
 		<tr>
 			<td colspan="2"><img src="images/PrintHeader.jpg" width="800px" />
 			</td>
@@ -80,13 +80,16 @@ function addProizvodToPrint(item){
 		</tr>
 		<tr>
 			<td width="50%">
-			<table width=100% style="border-width: thin;	border-spacing: 0px;	border-style: outset; border-spacing: 1px">
+			<table width=100% style="border-width: thin;	border-spacing: 0px;	border-style: outset; border-spacing: 1px; font-family: sans-serif; " >
 				<tr>
 					<td>Датум: <%=p.getProperty("dateOnly")%>
 					</td>
 				</tr>
 				<tr>
-					<td><font style="font-weight: bold;">Про-Фактура: <%=p.getProperty("dispID")%></font></td>
+					<td><font style="font-weight: bold;">ПРО-ФАКТУРА: <%=p.getProperty("dispID")%></font></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
@@ -95,9 +98,17 @@ function addProizvodToPrint(item){
 			</td>
 			<td width="50%">
 				<table style="border-width: thin;	border-spacing: 0px;	border-style: outset; border-spacing: 1px" width=100%>
-					<tr><td><%=p.getProperty("clientName")%>&nbsp;<%=p.getProperty("clientPrezime")%></td></tr>
+					<tr><td>
+					<%if (!("".equalsIgnoreCase((String) p.getProperty("clientFirmaName")) ))  { %>
+					<%=p.getProperty("clientFirmaName")%>
+					<%}else{%>
+					<%=p.getProperty("clientName")%>&nbsp;<%=p.getProperty("clientPrezime")%>
+					<%} %>
+					</td></tr>
 					<tr><td><%=p.getProperty("clientadresa")%></td></tr>
 					<tr><td><%=p.getProperty("clientmesto")%></td></tr>
+					<tr><td><%=p.getProperty("clientopstina")%></td></tr>
+					
 				</table>
 			</td>
 		</tr>
@@ -120,22 +131,22 @@ function addProizvodToPrint(item){
 				<thead style="font-weight: bold;">
 					<tr align="center">
 						<td rowspan="2">Р.б</td>
-						<td rowspan="2">Шифра</td>
+						<!-- <td rowspan="2">Шифра</td>-->
 						<td rowspan="2">Назив на производот</td>
 						<td rowspan="2">Е М</td>
 						<td rowspan="2">Кол</td>
 						<td colspan="2">Цена без данок</td>
 						
-						<td rowspan="2">ДДВ по единицак</td>
+						<td rowspan="2">ДДВ по <br> единица</td>
 						<td colspan="2">Цена со данок</td>
 						
-						<td rowspan="2">ДДВ %</td>
+						<td rowspan="2">ДДВ<br>%</td>
 					</tr>
 					<tr align="center">
-						<td>Парче</td>
-						<td>Вкупно</td>
-						<td>Парче</td>
-						<td>Вкупно</td>
+						<td>По един.</td>
+						<td>Износ</td>
+						<td>По един.</td>
+						<td>Износ</td>
 					</tr>
 				</thead>
 				</table>

@@ -120,6 +120,7 @@ public class AddItem extends HttpServlet {
 		String merkaUI = setMerkaUI(merka);
 		
 		item.setProperty("ime", ime);
+		item.setProperty("imeLC", ime.toLowerCase());
 
 		
 		item.setProperty("cenaBezDanok", cenaBezDanok);
@@ -157,8 +158,8 @@ public class AddItem extends HttpServlet {
 
 
 	private String setMerkaUI(String merka) {
-		if (merka.equals("par")) return "Парче";
-		if (merka.equals("kg")) return "Килограми";
+		if (merka.equals("par")) return "Пар";
+		if (merka.equals("kg")) return "Кг";
 		
 		return "undefined";
 		
