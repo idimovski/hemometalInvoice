@@ -56,6 +56,12 @@ function printPro(){
 	newwindow=window.open("/proPrint.jsp",'Печати','height=900px,width=850px');
 }
 
+function printSpek(){	
+	newwindow=window.open("/printspec",'Спецификација','height=900px,width=850px');
+}
+
+
+
 function goToPage(url){
 	    
 		document.location.href = url;
@@ -84,10 +90,14 @@ $(document).ready(function() {
 						<h4 align="left">Профактура: <%=p.getProperty("dispID") %></h4>
 					</div>
 					
-					<div class="3u">
+					<div class="2u">
 							<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1"  value="Печати" onclick="printPro()"/>	
 					</div>
-					<div class="3u">
+					
+					<div class="2u">
+							<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1"  value="Спецификација" onclick="printSpek()"/>	
+					</div>
+					<div class="2u">
 							<input class="button icon fa-file" style="cursor: pointer;" id="saveForm1"  value="Зачувај" onclick="saveProfaktura();"/>	
 					</div>
 				</div>

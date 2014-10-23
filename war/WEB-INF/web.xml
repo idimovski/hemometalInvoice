@@ -7,6 +7,16 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
 
+
+	<servlet>
+		<servlet-name>printspec</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.PrintSpec</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>printspec</servlet-name>
+		<url-pattern>/printspec</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>getpro</servlet-name>
 		<servlet-class>com.hemometal.invoice.mgmt.GetPro</servlet-class>

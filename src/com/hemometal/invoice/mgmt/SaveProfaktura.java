@@ -154,6 +154,8 @@ public class SaveProfaktura extends HttpServlet {
 		
 		
 	}
+	
+	
 
 
 	private String calculateTotalValue(Entity profaktura, String type) throws ParseException {

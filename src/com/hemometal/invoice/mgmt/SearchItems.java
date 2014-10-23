@@ -21,6 +21,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.Text;
 
 @SuppressWarnings("serial")
 public class SearchItems extends HttpServlet {
@@ -40,7 +41,7 @@ public class SearchItems extends HttpServlet {
 		
 		Query query = new Query("item");
 		
-		List<Entity> items = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(1000));
+		List<Entity> items = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(100));
 		
 		JSONObject resultsObj = new JSONObject();
 		JSONArray results = new JSONArray();
@@ -66,6 +67,11 @@ public class SearchItems extends HttpServlet {
 			item.put("ddvUI", e.getProperty("ddvUI"));
 			item.put("samoDanok", e.getProperty("samoDanok"));
 			item.put("kolicina", "1");
+			
+			
+			
+			
+			
 			
 	
 			results.add(item);
