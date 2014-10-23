@@ -72,6 +72,9 @@ public class CreateProfactura extends HttpServlet {
 		
 		pro.setProperty("clientSifra", client.getProperty("sifra"));
 		pro.setProperty("clientDispID", client.getProperty("dispID"));
+		
+		pro.setProperty("odobrena", "false");
+		
 		pro.setProperty("date", new Date());
 		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		SimpleDateFormat dOnly = new SimpleDateFormat("dd/MM/yyyy");

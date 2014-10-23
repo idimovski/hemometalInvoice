@@ -161,7 +161,7 @@ function barajprofaktura(){
 									<label class="description" >Вкупна Сума (Ден)</label>
 								</td>
 								<td width="10%" align='right'>
-									<label class="description" >Исполнета</label>
+									<label class="description" >Одобрена</label>
 								</td>
 								
 							
@@ -200,7 +200,7 @@ function barajprofaktura(){
 									<label class="description" ><span class="money"><%=e.getProperty("totalValue") %></span></label>
 								</td>
 								<td width="20%" align='right'>
-									<label class="description" >ТБД</label>
+									<label class="description" ><%=e.getProperty("odobrenaUI") %></label>
 								</td>
 								
 								

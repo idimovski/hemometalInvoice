@@ -108,8 +108,8 @@ $(document).ready(function() {
 								<option>2015-2016</option>
 							</select>
 						</div>
-						<div class="3u" style="vertical-align: center">
-							<input type="checkbox" name="ispolneta" value="ispolneta">Одобрена<br>
+						<div class="3u" style="vertical-align: center" >
+							<input type="checkbox" title="title"  name="odobrena" id="odobrena"  <%if(p.getProperty("odobrena").equals("true")){ %> checked="checked" <%} %> />Одобрена
 						</div>
 					</div>
 					<div class="row">
@@ -258,10 +258,21 @@ if(null!=curentItems){
 
 function saveProfaktura(){
 	
+	var odobrena = "false";
+	
+	if($("#odobrena").is(':checked'))
+		odobrena = "true";// checked
+	else
+		odobrena = "false";// checked
+	
+		
+		sezona
 	 
 	 var proJson = {
 		 "prokey" : $("#proKey").val() ,
 		 "clientid" :$("#clientid").val() ,
+		 "sezona" :$("#sezona").val() ,
+		 "odobrena" :odobrena ,
 		 "items" : itemsArray
 		 
 	 }

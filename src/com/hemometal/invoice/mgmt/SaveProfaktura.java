@@ -77,6 +77,16 @@ public class SaveProfaktura extends HttpServlet {
 		JSONArray items = (JSONArray) jsonObject.get("items");
 		String prokey =  jsonObject.get("prokey").toString();
 	
+		String odobrena = jsonObject.get("odobrena").toString();
+		String sezona = jsonObject.get("sezona").toString();
+
+		
+		String odobrenaUI = "";
+		if("true".equals(odobrena)){
+			odobrenaUI = "Да";
+		}else {
+			odobrenaUI = "Не";
+		}
 		
 		  
 		
@@ -102,8 +112,9 @@ public class SaveProfaktura extends HttpServlet {
 		
 //		profaktura.setProperty("items", new Text(items.toJSONString()));
 		profaktura.setProperty("items", new Text(jsonObject.toJSONString()));
-		
-		
+		profaktura.setProperty("odobrena", odobrena);
+		profaktura.setProperty("odobrenaUI", odobrenaUI);	
+		profaktura.setProperty("sezona", sezona);	
 		
 		String totalValue= "0";
 		String totalValueWithDDV= "0";

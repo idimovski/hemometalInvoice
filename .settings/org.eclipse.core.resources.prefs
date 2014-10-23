@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/com/hemometal/invoice/mgmt/AddItem.java=UTF-8
 encoding//src/com/hemometal/invoice/mgmt/AddUpdateClient.java=UTF-8
+encoding//src/com/hemometal/invoice/mgmt/SaveProfaktura.java=UTF-8
 encoding//src/com/hemometal/invoice/mgmt/SearchItems.java=UTF-8
 encoding//war/header.jsp=UTF-8
 encoding//war/js/jquery.formatCurrency-1.4.0.min.js=UTF-8
