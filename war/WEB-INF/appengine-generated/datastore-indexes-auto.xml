@@ -1,4 +1,32 @@
-<!-- Indices written at Thu, 23 Oct 2014 19:53:44 UTC -->
+<!-- Indices written at Fri, 24 Oct 2014 04:19:58 UTC -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 3 times in query history -->
+    <datastore-index kind="pro" ancestor="false" source="auto">
+        <property name="deleted" direction="asc"/>
+        <property name="date" direction="desc"/>
+    </datastore-index>
+
+    <!-- Used 4 times in query history -->
+    <datastore-index kind="client" ancestor="false" source="auto">
+        <property name="deleted" direction="asc"/>
+        <property name="date" direction="desc"/>
+    </datastore-index>
+
+    <!-- Used 5 times in query history -->
+    <datastore-index kind="item" ancestor="false" source="auto">
+        <property name="deleted" direction="asc"/>
+        <property name="date" direction="desc"/>
+    </datastore-index>
+
+    <!-- Used 6 times in query history -->
+    <datastore-index kind="item" ancestor="false" source="auto">
+        <property name="deleted" direction="asc"/>
+        <property name="kategorija" direction="asc"/>
+        <property name="proizvoditel" direction="asc"/>
+        <property name="zemjapotelko" direction="asc"/>
+        <property name="date" direction="desc"/>
+    </datastore-index>
+
+</datastore-indexes>

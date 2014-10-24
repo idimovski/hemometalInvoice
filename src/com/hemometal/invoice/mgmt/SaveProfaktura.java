@@ -78,7 +78,7 @@ public class SaveProfaktura extends HttpServlet {
 		String prokey =  jsonObject.get("prokey").toString();
 	
 		String odobrena = jsonObject.get("odobrena").toString();
-		String sezona = jsonObject.get("sezona").toString();
+		String tip = jsonObject.get("tip").toString();
 
 		
 		String odobrenaUI = "";
@@ -114,7 +114,7 @@ public class SaveProfaktura extends HttpServlet {
 		profaktura.setProperty("items", new Text(jsonObject.toJSONString()));
 		profaktura.setProperty("odobrena", odobrena);
 		profaktura.setProperty("odobrenaUI", odobrenaUI);	
-		profaktura.setProperty("sezona", sezona);	
+		profaktura.setProperty("tip", tip);	
 		
 		String totalValue= "0";
 		String totalValueWithDDV= "0";

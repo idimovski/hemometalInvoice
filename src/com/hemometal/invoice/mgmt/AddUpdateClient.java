@@ -124,6 +124,7 @@ public class AddUpdateClient extends HttpServlet {
 		
 		item.setProperty("opis", opis);
 		item.setProperty("date", new Date());
+		item.setProperty("deleted", "false");
 		
 		
 		Transaction tr = datastore.beginTransaction();

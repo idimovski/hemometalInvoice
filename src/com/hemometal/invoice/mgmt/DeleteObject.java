@@ -26,14 +26,49 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.hemometal.invoice.mgmt.helper.SequenceHelper;
 
 @SuppressWarnings("serial")
-public class AddItem extends HttpServlet {
+public class DeleteObject extends HttpServlet {
 	
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		loadItemsInReq(req);
+		String id = req.getParameter("objid");
+		String kind = req.getParameter("kind");
 		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/items.jsp");
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		RequestDispatcher d = null;
+		
+		
+		if ( (null!=id) && (null!=kind) ){
+			
+			Entity object = null;
+		
+			try {
+				object = datastore.get(KeyFactory.stringToKey(id));
+				
+				object.setProperty("deleted", "true");
+				datastore.put(object);
+				
+				if(kind.equals("item"))
+					d = getServletContext().getRequestDispatcher("/addItem");
+				
+				if(kind.equals("client"))
+					d = getServletContext().getRequestDispatcher("/getclients");
+				
+				if(kind.equals("pro"))
+					d = getServletContext().getRequestDispatcher("/getallpro");
+				
+				
+
+				
+			} catch (EntityNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
+		
+	
 		 d.forward(req, resp);
 	}
 
@@ -49,9 +84,6 @@ public class AddItem extends HttpServlet {
 		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Query query = new Query("item").addSort("date", SortDirection.DESCENDING);
-		query.addFilter("deleted", FilterOperator.EQUAL, "false");
-
-
 		
 		if((!("".equals(kategorija)))&&(null!= kategorija))	query.addFilter("kategorija", FilterOperator.EQUAL, kategorija.toLowerCase());
 		if((!("".equals(proizvoditel)))&&(null!= proizvoditel))	query.addFilter("proizvoditel", FilterOperator.EQUAL, proizvoditel);
@@ -155,7 +187,6 @@ public class AddItem extends HttpServlet {
 		item.setProperty("merkaUI", merkaUI);
 		item.setProperty("opis", opis);
 		item.setProperty("date", new Date());
-		item.setProperty("deleted", "false");
 		
 		
 		

@@ -1,7 +1,5 @@
 package com.hemometal.invoice.mgmt;
 import java.io.IOException;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,23 +11,30 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.KeyRange;
-import com.google.appengine.api.datastore.Projection;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Text;
-import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.oauth.OAuthRequestException;
+import com.google.appengine.api.oauth.OAuthService;
+import com.google.appengine.api.oauth.OAuthServiceFactory;
+import com.google.appengine.api.users.User;
 
 @SuppressWarnings("serial")
 public class GetAllPro extends HttpServlet {
 	
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		/*OAuthService oauth = OAuthServiceFactory.getOAuthService();
+		User user = null;
+		try {
+			user = oauth.();
+		} catch (OAuthRequestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
 		
 		String sifra = req.getParameter("sifra");
 		String ime = req.getParameter("ime");
@@ -52,6 +57,7 @@ public class GetAllPro extends HttpServlet {
 		if((!("".equals(firma)))&&(null!= firma))	query.addFilter("clientFirmaNameLC", FilterOperator.EQUAL, firma.toLowerCase());
 	
 		
+		query.addFilter("deleted", FilterOperator.EQUAL, "false");
 		query = query.addSort("date", SortDirection.DESCENDING);
 		
 		

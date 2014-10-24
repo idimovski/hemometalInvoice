@@ -148,7 +148,7 @@ function barajprofaktura(){
 				
 			    <table border ='1' width='100%' style="cursor: pointer;">
 			    				<tr style="cursor: pointer;">
-								<td width="20%">
+								<td width="5%">
 									<label class="description">Шифра</label>
 								</td>
 								<td width="30%">
@@ -157,10 +157,13 @@ function barajprofaktura(){
 								<td width="20%" align='center'>
 									<label class="description" >Дата</label>
 								</td>
+								<td width="15%" align='center'>
+									<label class="description" >Тип</label>
+								</td>
 								<td width="20%" align='right'>
 									<label class="description" >Вкупна Сума (Ден)</label>
 								</td>
-								<td width="10%" align='right'>
+								<td width="5%" align='right'>
 									<label class="description" >Одобрена</label>
 								</td>
 								
@@ -183,11 +186,11 @@ function barajprofaktura(){
 			    
 			    
 			    <li onmouseup="openItem('<%=KeyFactory.keyToString(e.getKey())%>');">
-			    <table border ='1' width='100%' style="cursor: pointer;">
+			    <table border ='1' width='100%' style="cursor: pointer;font-size:large;">
 			    				
 			    				
 								<tr style="cursor: pointer;">
-								<td width="20%">
+								<td width="5%">
 									<label id="rowid" class="description" style="cursor: pointer;"><%=e.getProperty("dispID") %></label>
 								</td>
 								<td width="30%">
@@ -196,10 +199,13 @@ function barajprofaktura(){
 								<td width="20%">
 									<label class="description" style="cursor: pointer;"><%=e.getProperty("dateF") %></label>
 								</td>
+								<td width="15%" align="center" nowrap="nowrap">
+									<label class="description" style="cursor: pointer;"><%=e.getProperty("tip") %></label>
+								</td>
 								<td width="20%" align='right'>
 									<label class="description" ><span class="money"><%=e.getProperty("totalValue") %></span></label>
 								</td>
-								<td width="20%" align='right'>
+								<td width="5%" align='right'>
 									<label class="description" ><%=e.getProperty("odobrenaUI") %></label>
 								</td>
 								

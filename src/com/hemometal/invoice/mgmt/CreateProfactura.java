@@ -74,6 +74,7 @@ public class CreateProfactura extends HttpServlet {
 		pro.setProperty("clientDispID", client.getProperty("dispID"));
 		
 		pro.setProperty("odobrena", "false");
+		pro.setProperty("tip", "");
 		
 		pro.setProperty("date", new Date());
 		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -83,6 +84,7 @@ public class CreateProfactura extends HttpServlet {
 		pro.setProperty("dateOnly", dOnly.format(new Date()));
 		pro.setProperty("totalValue", "0");
 		pro.setProperty("totalValueWithDDV", "0");
+		pro.setProperty("deleted", "false");
 
 		 
 		

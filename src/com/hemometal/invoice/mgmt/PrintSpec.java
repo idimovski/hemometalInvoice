@@ -32,6 +32,7 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.hemometal.invoice.mgmt.helper.ItemHelper;
 import com.hemometal.invoice.mgmt.helper.SequenceHelper;
+import com.hemometal.invoice.mgmt.model.Item;
 
 @SuppressWarnings("serial")
 public class PrintSpec extends HttpServlet {
@@ -41,40 +42,51 @@ public class PrintSpec extends HttpServlet {
 		
 		Entity pro = (Entity) req.getSession().getAttribute("pro");
 		
+		ArrayList<Item> proList = null;
 		try {
-			setSpecToPro(pro);
+			proList = setSpecToPro(pro);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		req.getSession().setAttribute("pro", pro);
 
+		req.setAttribute("proList", proList);
 		
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/proSpecPrint.jsp");
 		 d.forward(req, resp);
 	}
 	
 	
-	private void setSpecToPro(Entity profaktura) throws ParseException {
-		JSONObject items =  (JSONObject) new JSONParser().parse(((Text) profaktura.getProperty("items")).getValue());
-		JSONArray itemsArray = (JSONArray) items.get("items");
-		
-		//System.out.println(items);
-		
+	private ArrayList<Item> setSpecToPro(Entity profaktura) throws ParseException {
 		ItemHelper ih = new ItemHelper();
-		ArrayList<String> opisList = new ArrayList<String>();
-		double total = 0;
-		for (Iterator iterator = itemsArray.iterator(); iterator.hasNext();) {
-			JSONObject item = (JSONObject) iterator.next();
-			String itemKey = item.get("id").toString();
-			String opis =  ((Text) ih.getItemDetails(itemKey).getProperty("opis")).getValue();
-			opisList.add(opis);
+		ArrayList<Item> opisList = new ArrayList<Item>();
 		
+		if(null!=profaktura.getProperty("items")){
+			JSONObject items =  (JSONObject) new JSONParser().parse(((Text) profaktura.getProperty("items")).getValue());
+			JSONArray itemsArray = (JSONArray) items.get("items");
 			
+			//System.out.println(items);
+			
+		
+			double total = 0;
+			for (Iterator iterator = itemsArray.iterator(); iterator.hasNext();) {
+				JSONObject item = (JSONObject) iterator.next();
+				String itemKey = item.get("id").toString();
+				
+				Entity itemDB = ih.getItemDetails(itemKey);
+				
+				String opis =  ((Text) itemDB.getProperty("opis")).getValue();
+				String name =  (String) itemDB.getProperty("ime");
+				String sifra =  ((Long) itemDB.getProperty("dispID")).toString();
+				opisList.add(new Item(sifra, name, opis));
+			
+				
+			}
 		}
 
-		profaktura.setProperty("opisList", opisList);
+		return opisList;
+		
 	}
 
 }

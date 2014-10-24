@@ -113,9 +113,11 @@ $(document).ready(function() {
 							<label class="description" ><h4> Клиент: <%=p.getProperty("clientName") %> (<%=p.getProperty("clientDispID") %>)</h4></label> 
 						</div>
 						<div class="2u" align="right">
-							<select id="sezona" name="sezona">
-								<option selected="selected">2014-2015</option>
-								<option>2015-2016</option>
+							<select id="tip" name="tip">
+								<option <%if(p.getProperty("tip").equals("И-14/15")){ %> selected="selected" <%} %> value="И-14/15">ИПАРД 14/15</option>
+								<option <%if(p.getProperty("tip").equals("И-15/16")){ %> selected="selected" <%} %>   value="И-15/16">ИПАРД 15/16</option>
+								<option <%if(p.getProperty("tip").equals("Редовен 14")){ %> selected="selected" <%} %>    value="Редовен 14">Редовен 14</option>
+								
 							</select>
 						</div>
 						<div class="3u" style="vertical-align: center" >
@@ -228,7 +230,7 @@ function addProizvod(item,rowid) {
 	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
 	//$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + item.ime + "</td><td width='30%' align='right'><span class=\"money\"> " + item.cena + "</span></td></tr><table></li>");
 	itemsArray.push(item);
-	$( "#proizvodiSelected").append("<li><table border='1'><tr><td width='10%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='10%'><input type='text' name='kolicina' value='"+item.kolicina+"' onChange='changeKolicina("+item.dispID+",this,"+(itemsArray.length - 1)+")';/></td><td width='20%' align='right'><span class=\"money\"> " + item.cenaBezDanok + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
+	$( "#proizvodiSelected").append("<li><table style=\"cursor: pointer;font-size:large;\" border='1'><tr><td width='5%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='10%'><input type='text' name='kolicina' value='"+item.kolicina+"' onChange='changeKolicina("+item.dispID+",this,"+(itemsArray.length - 1)+")';/></td><td width='20%' align='right'><span class=\"money\"> " + item.cenaBezDanok + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
 	
 	/*$("#proizvodiSelected").append(
 			"<li><table><tr><td width='30%'>" + proizvodName
@@ -276,12 +278,12 @@ function saveProfaktura(){
 		odobrena = "false";// checked
 	
 		
-		sezona
+	
 	 
 	 var proJson = {
 		 "prokey" : $("#proKey").val() ,
 		 "clientid" :$("#clientid").val() ,
-		 "sezona" :$("#sezona").val() ,
+		 "tip" :$("#tip").val() ,
 		 "odobrena" :odobrena ,
 		 "items" : itemsArray
 		 
@@ -372,7 +374,7 @@ var kat = $( "#kategorija" ).val();
 						item.put("ddv", e.getProperty("ddv"));*/
 					  
 					 
-					  $("#itemsPagination").append("<li onmouseup=\"addProizvodFromResults(\'" + i  + "\')\";><table border='1'><tr><td width='10%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='20%' align='right'><span class=\"money\"> " + item.cenaBezDanok + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='10%' ></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
+					  $("#itemsPagination").append("<li onmouseup=\"addProizvodFromResults(\'" + i  + "\')\";><table style=\"cursor: pointer;font-size:large;\" ><tr><td width='5%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='20%' align='right'><span class=\"money\"> " + item.cenaBezDanok + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='10%' ></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
 					  
 					});
 					$("span.money").formatCurrency();

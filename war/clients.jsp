@@ -175,7 +175,7 @@ function barajklienti(){
 			    
 			    
 			    <li onmouseup="openItem('<%=KeyFactory.keyToString(e.getKey())%>');">
-			    <table border ='1' width='100%' style="cursor: pointer;">
+			    <table border ='1' width='100%'  style="cursor: pointer;font-size:large;">
 			    				
 			    				
 								<tr style="cursor: pointer;">

@@ -49,6 +49,8 @@ public class GetAllClients extends HttpServlet {
 		if((!("".equals(opstina)))&&(null!= opstina))	query.addFilter("opstinaLC", FilterOperator.EQUAL, opstina.toLowerCase());
 
 		
+		query.addFilter("deleted", FilterOperator.EQUAL, "false");
+
 		List<Entity> items = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(1000));
 		
 		req.setAttribute("clientList", items);
