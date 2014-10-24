@@ -93,12 +93,13 @@ function novaprofaktura(){
 
 function barajprofaktura(){
 	
+	var tip = $("#tip").val();
 	var sifra = $("#sifra").val();
 	var ime = $("#ime").val();
 	var prezime = $("#prezime").val();
 	var firma = $("#firma").val();
 	
-	document.location.href = "getallpro?sifra=" + sifra+"&ime="+ime + "&prezime=" + prezime + "&firma="+firma;
+	document.location.href = "getallpro?sifra=" + sifra+"&ime="+ime + "&prezime=" + prezime + "&firma="+firma + "&tip=" + tip;
 	
 }
 
@@ -122,6 +123,14 @@ function barajprofaktura(){
 				</div>
 				<form action="">
 					<div class="row">
+						<div class="2u">
+							<select id="tip">
+								<option value="">Сите Типови</option>
+								<option value="И-14/15">ИПАРД 14/15</option>
+								<option value="И-15/16">ИПАРД 15/16</option>
+								<option value="Редовен 14">Редовен 14</option>
+							</select>
+						</div>
 						<div class="2u">
 							<input id="sifra" placeholder="Шифра" type="text"  value="" />
 						</div>

@@ -139,7 +139,7 @@ function goToPage(url){
 							</select>
 						</div>
 						<div class="4u">
-							<select name="kategorija" title="Kfdsfasdsfk">
+							<select name="kategorija" title="kategorija">
 								<option <%if(i.getProperty("kategorija").equals("traktori")){ %>selected="selected"<%} %> value="traktori">Трактори</option>
 								<option <%if(i.getProperty("kategorija").equals("plugovi")){ %>selected="selected"<%} %> value="plugovi">Плугови</option>
 								<option <%if(i.getProperty("kategorija").equals("tanjirachi")){ %>selected="selected"<%} %> value="tanjirachi">Тањирачи</option>

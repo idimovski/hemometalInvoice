@@ -146,13 +146,41 @@ $(document).ready(function() {
 						</div>
 						<div class="3u">
 							<select id="proizvoditel" name="proizvoditel">
+								<option>Bcs group Ferrari</option>
+								<option>Аббриата</option>
+								<option>Агробар</option>
+								<option>Агровин</option>
+								<option>Агромеркур</option>
+								<option>Агрон</option>
 								<option>Алплер</option>
+								<option>Гаспардо</option>
+								<option>Гружа аграр</option>
+								<option>Занон</option>
 								<option>Зетор</option>
-								
+								<option>Илги</option>
+								<option>Калдерони</option>
+								<option>Континентал</option>
+								<option>Космо</option>
+								<option>Метал фах</option>
+								<option>Минос агри</option>
+								<option>Паксан</option>
+								<option>Палазоглу</option>
+								<option>Пољострој</option>
+								<option>Соналика ИТЛ</option>
+								<option>Тиназ</option>
+								<option>Фпм агромеханика</option>
+								<option>Фпм дељанин</option>
+								<option>Хаттат</option>
 							</select>
 						</div>
 						<div class="2u">
 							<select id="zemjapotelko" name="zemjapotelko">
+								<option>Грција</option>
+								<option>Индија</option>
+								<option>Италија</option>
+								<option>Македонија</option>
+								<option>Полска</option>
+								<option>Србија</option>
 								<option>Турција</option>
 								<option>Чешка</option>
 							</select>

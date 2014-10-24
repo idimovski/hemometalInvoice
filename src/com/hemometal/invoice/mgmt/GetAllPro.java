@@ -36,6 +36,7 @@ public class GetAllPro extends HttpServlet {
 		}*/
 		
 		
+		String tip = req.getParameter("tip");
 		String sifra = req.getParameter("sifra");
 		String ime = req.getParameter("ime");
 		String prezime = req.getParameter("prezime");
@@ -52,6 +53,7 @@ public class GetAllPro extends HttpServlet {
 			query.addFilter("dispID", FilterOperator.EQUAL, sifrai);
 		}
 		
+		if((!("".equals(tip)))&&(null != tip))	query.addFilter("tip", FilterOperator.EQUAL, tip);
 		if((!("".equals(ime)))&&(null!= ime))	query.addFilter("clientNameLC", FilterOperator.EQUAL, ime.toLowerCase());
 		if((!("".equals(prezime)))&&(null!= prezime))	query.addFilter("clientPrezimeLC", FilterOperator.EQUAL, prezime.toLowerCase());
 		if((!("".equals(firma)))&&(null!= firma))	query.addFilter("clientFirmaNameLC", FilterOperator.EQUAL, firma.toLowerCase());
