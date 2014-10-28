@@ -51,8 +51,8 @@
 								
 								</li>
 								
-								<li><a class="icon fa-retweet" href="right-sidebar.html"><span>За Нас</span></a></li>
-								<li><a class="icon fa-sitemap" href="no-sidebar.html"><span>Инфо</span></a></li>
+								<li><a class="icon fa-retweet" href="#"><span>Администрација</span></a></li>
+								<li><a class="icon fa-sitemap" href="logout"><span>Одјава</span></a></li>
 							</ul>
 						</nav>
 

@@ -105,6 +105,7 @@ function goToPage(url){
 								<option <%if(i.getProperty("proizvoditel").equals("Агромеркур")){ %>selected="selected"<%} %> >Агромеркур</option>
 								<option <%if(i.getProperty("proizvoditel").equals("Агрон")){ %>selected="selected"<%} %> >Агрон</option>
 								<option <%if(i.getProperty("proizvoditel").equals("Алплер")){ %>selected="selected"<%} %> >Алплер</option>
+								<option <%if(i.getProperty("proizvoditel").equals("Алтајоглу")){ %>selected="selected"<%} %> >Алтајоглу</option>
 								<option <%if(i.getProperty("proizvoditel").equals("Гаспардо")){ %>selected="selected"<%} %> >Гаспардо</option>
 								<option <%if(i.getProperty("proizvoditel").equals("Гружа аграр")){ %>selected="selected"<%} %> >Гружа аграр</option>
 								<option <%if(i.getProperty("proizvoditel").equals("Занон")){ %>selected="selected"<%} %> >Занон</option>

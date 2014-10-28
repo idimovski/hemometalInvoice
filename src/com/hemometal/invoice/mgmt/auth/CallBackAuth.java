@@ -71,7 +71,6 @@ public class CallBackAuth extends AbstractAuthorizationCodeCallbackServlet   {
 		    resp.sendRedirect("/getallpro");
 		    System.out.println("user found");
 		}else{
-			req.getSession().setAttribute("redirected", null);
 			System.out.println("not authorized email:" + email);
 			req.setAttribute("message", "User ID:" + email + " is not authorized." );
 			resp.sendRedirect("/notauthorized.jsp");

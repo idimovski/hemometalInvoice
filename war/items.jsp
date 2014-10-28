@@ -142,31 +142,7 @@ function barajproizvod(){
 					<div class="2u">
 						<select id="proizvoditel">
 							<option selected="selected" value="">Сите Прозиводители</option>
-							<option>Bcs group Ferrari</option>
-							<option>Аббриата</option>
-							<option>Агробар</option>
-							<option>Агровин</option>
-							<option>Агромеркур</option>
-							<option>Агрон</option>
-							<option>Алплер</option>
-							<option>Гаспардо</option>
-							<option>Гружа аграр</option>
-							<option>Занон</option>
-							<option>Зетор</option>
-							<option>Илги</option>
-							<option>Калдерони</option>
-							<option>Континентал</option>
-							<option>Космо</option>
-							<option>Метал фах</option>
-							<option>Минос агри</option>
-							<option>Паксан</option>
-							<option>Палазоглу</option>
-							<option>Пољострој</option>
-							<option>Соналика ИТЛ</option>
-							<option>Тиназ</option>
-							<option>Фпм агромеханика</option>
-							<option>Фпм дељанин</option>
-							<option>Хаттат</option>
+							<jsp:include page="itemsMaker.jsp" ></jsp:include>
 						</select>
 					</div>
 					<div class="2u">
@@ -285,31 +261,7 @@ function barajproizvod(){
 						<div class="4u">
 							<select name="proizvoditel">
 								<option selected="selected">Друг Производител</option>
-								<option>Bcs group Ferrari</option>
-								<option>Аббриата</option>
-								<option>Агробар</option>
-								<option>Агровин</option>
-								<option>Агромеркур</option>
-								<option>Агрон</option>
-								<option>Алплер</option>
-								<option>Гаспардо</option>
-								<option>Гружа аграр</option>
-								<option>Занон</option>
-								<option>Зетор</option>
-								<option>Илги</option>
-								<option>Калдерони</option>
-								<option>Континентал</option>
-								<option>Космо</option>
-								<option>Метал фах</option>
-								<option>Минос агри</option>
-								<option>Паксан</option>
-								<option>Палазоглу</option>
-								<option>Пољострој</option>
-								<option>Соналика ИТЛ</option>
-								<option>Тиназ</option>
-								<option>Фпм агромеханика</option>
-								<option>Фпм дељанин</option>
-								<option>Хаттат</option>
+<jsp:include page="itemsMaker.jsp" ></jsp:include>	
 							</select>
 						</div>
 						<div class="3u">

@@ -18,6 +18,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
 
 	<servlet>
+		<servlet-name>logout</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.auth.Logout</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>callback</servlet-name>
 		<servlet-class>com.hemometal.invoice.mgmt.auth.CallBackAuth</servlet-class>
 	</servlet>
