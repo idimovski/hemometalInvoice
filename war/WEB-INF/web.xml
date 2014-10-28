@@ -6,6 +6,35 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
+
+	<filter>
+		<filter-name>authfilter</filter-name>
+		<filter-class>com.hemometal.invoice.mgmt.auth.AuthFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>authfilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<servlet>
+		<servlet-name>callback</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.auth.CallBackAuth</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>callback</servlet-name>
+		<url-pattern>/callback</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>authservlet</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.auth.AuthServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>authservlet</servlet-name>
+		<url-pattern>/authservlet</url-pattern>
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>delete</servlet-name>
 		<servlet-class>com.hemometal.invoice.mgmt.DeleteObject</servlet-class>

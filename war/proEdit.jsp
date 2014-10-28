@@ -245,12 +245,14 @@ var itemsArray = [];
 
 function changeKolicina(itemID, input, rowid){
 
-	itemsArray[rowid].kolicina = input.value;
-	
-	
-	
-		
+	itemsArray[rowid].kolicina = input.value;	
 }
+function removeItemFromProList(rowid){
+	//alert("remove item from pro list "+ rowid);
+	itemsArray[rowid].removed = "true";	
+	$("#li"+rowid).remove();
+}
+
 
  
 function addProizvod(item,rowid) {
@@ -258,7 +260,14 @@ function addProizvod(item,rowid) {
 	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
 	//$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + item.ime + "</td><td width='30%' align='right'><span class=\"money\"> " + item.cena + "</span></td></tr><table></li>");
 	itemsArray.push(item);
-	$( "#proizvodiSelected").append("<li><table style=\"cursor: pointer;font-size:large;\" border='1'><tr><td width='5%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='10%'><input type='text' name='kolicina' value='"+item.kolicina+"' onChange='changeKolicina("+item.dispID+",this,"+(itemsArray.length - 1)+")';/></td><td width='20%' align='right'><span class=\"money\"> " + item.cenaBezDanok + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
+	$( "#proizvodiSelected").append("<li id='li"+rowid+"'><table style=\"font-size:large;\" border='1'><tr><td width='5%'>"
+		+ item.dispID+"</td><td width='30%'>" 
+		+ item.ime + "</td><td width='10%'><input type='text' name='kolicina' value='"
+		+ item.kolicina+"' onChange='changeKolicina("+item.dispID+",this,"+(itemsArray.length - 1)+")';/></td><td width='20%' align='right'>" 
+		+ item.proizvoditel + " - " + item.zemjapotelko  + "</td><td width='20%' align='right'><span class=\"money\">" 
+		+ item.cenaSoDanok +"</span></td><td width='5%' align='right'>"
+		+ item.ddvUI+"</td><TD width='5%' align='right' onclick='removeItemFromProList("+rowid+");'>"
+		+ "X</td></tr></table></li>");
 	
 	/*$("#proizvodiSelected").append(
 			"<li><table><tr><td width='30%'>" + proizvodName
@@ -305,7 +314,12 @@ function saveProfaktura(){
 	else
 		odobrena = "false";// checked
 	
-		
+	var submitList  = [];
+	for (iter=0;iter<itemsArray.length;iter++){
+		if(itemsArray[iter].removed != "true"){
+			submitList.push(itemsArray[iter])
+		}
+	}
 	
 	 
 	 var proJson = {
@@ -313,7 +327,7 @@ function saveProfaktura(){
 		 "clientid" :$("#clientid").val() ,
 		 "tip" :$("#tip").val() ,
 		 "odobrena" :odobrena ,
-		 "items" : itemsArray
+		 "items" : submitList
 		 
 	 }
 	 
@@ -402,7 +416,12 @@ var kat = $( "#kategorija" ).val();
 						item.put("ddv", e.getProperty("ddv"));*/
 					  
 					 
-					  $("#itemsPagination").append("<li onmouseup=\"addProizvodFromResults(\'" + i  + "\')\";><table style=\"cursor: pointer;font-size:large;\" ><tr><td width='5%'>"+item.dispID+"</td><td width='30%'>" + item.ime + "</td><td width='20%' align='right'><span class=\"money\"> " + item.cenaBezDanok + "</span></td><td width='20%' align='right'><span class=\"money\">" + item.cenaSoDanok +"</span></td><td width='10%' ></td><td width='5%' align='right'>"+item.ddvUI+"</td></tr></table></li>");
+					  $("#itemsPagination").append("<li onmouseup=\"addProizvodFromResults(\'" + i 
+							  + "\')\";><table style=\"cursor: pointer;font-size:large;\" ><tr><td width='5%'>"+item.dispID
+							  + "</td><td width='30%'>" + item.ime + "</td><td width='20%' align='right'>" 
+							  + item.proizvoditel + " - " + item.zemjapotelko +  "</td><td width='20%' align='right'><span class=\"money\">"
+							  + item.cenaSoDanok +"</span></td><td width='10%' ></td><td width='5%' align='right'>"
+							  + item.ddvUI+"</td></tr></table></li>");
 					  
 					});
 					$("span.money").formatCurrency();

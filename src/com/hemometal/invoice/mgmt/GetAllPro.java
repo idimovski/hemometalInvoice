@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
+import com.google.api.client.auth.oauth2.AuthorizationCodeFlow.Builder;
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.http.HttpRequest;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -19,6 +23,7 @@ import com.google.appengine.api.oauth.OAuthRequestException;
 import com.google.appengine.api.oauth.OAuthService;
 import com.google.appengine.api.oauth.OAuthServiceFactory;
 import com.google.appengine.api.users.User;
+import com.google.apphosting.api.ApiProxy;
 
 @SuppressWarnings("serial")
 public class GetAllPro extends HttpServlet {
@@ -26,14 +31,15 @@ public class GetAllPro extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		/*OAuthService oauth = OAuthServiceFactory.getOAuthService();
-		User user = null;
-		try {
-			user = oauth.();
-		} catch (OAuthRequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		
+		
+		//is user already logged in ?
+		String at = "";
+		
+//		GoogleCredential credential = new GoogleCredential().setAccessToken(at);
+//		Plus plus = new Plus.builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential).setApplicationName("Google-PlusSample/1.0")  .build();
+		
+		
 		
 		
 		String tip = req.getParameter("tip");

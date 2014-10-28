@@ -39,11 +39,11 @@
 
 	<table border="0" width='800px' style="font-family: sans-serif;font-size:medium;">
 	<TR>
-	<td><img src="images/PrintHeader.jpg" width="800px" />
+	<td colspan="2"><img src="images/PrintHeader.jpg" width="800px" />
 	</tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr>
-		<td style="font-family: sans-serif;font-size:large;"> Спецификација за Профактура Број <b><%=p.getProperty("dispID")%></b> од Датум <B>	 <%=p.getProperty("dateOnly")%></B></td>
+		<td colspan="2" style="font-family: sans-serif;font-size:large;"> Спецификација за Профактура Број <b><%=p.getProperty("dispID")%></b> од Датум <B>	 <%=p.getProperty("dateOnly")%></B></td>
 	</tr>
 	
 
@@ -57,9 +57,9 @@ String opis = item.getOpis();
 opis = opis.replaceAll("\\n", "<BR>");
 
 %>	
-	<tr><td>&nbsp;</td></tr>
-	<tr><td><p><b><%=(i+1) %>.&nbsp;<%=item.getName()%> </b> </p></td></tr>
-	<tr><td><p> <%=opis%> </p></td></tr>
+<tr><td>&nbsp;</td></tr>
+	<tr><td colspan="2"><b><%=(i+1) %>.&nbsp;<%=item.getName()%> </b></td></tr>
+	<tr><td width="10px">&nbsp;</td><td> <%=opis%> </td></tr>
 
 <%} %>
 	</body>
