@@ -231,18 +231,19 @@ function removeItemFromProList(rowid){
 
 
  
-function addProizvod(item,rowid) {
+function addProizvod(item,searchrowid) {
 	/*alert(proizvodID +proizvodName+cena);*/
 	//$( "#proizvodiSelected").append("<div class='row'> <div class='3u'><p>" + proizvodName + " </p></div><div class='3u'>" + cena + " </div></div>");
 	//$( "#proizvodiSelected").append("<li><table><tr><td width='30%'>" + item.ime + "</td><td width='30%' align='right'><span class=\"money\"> " + item.cena + "</span></td></tr><table></li>");
 	itemsArray.push(item);
-	$( "#proizvodiSelected").append("<li id='li"+rowid+"'><table style=\"font-size:large;\" border='1'><tr><td width='5%'>"
+	var arrayid = (itemsArray.length - 1);
+	$( "#proizvodiSelected").append("<li id='li"+arrayid+"'><table style=\"font-size:large;\" border='1'><tr><td width='5%'>"
 		+ item.dispID+"</td><td width='30%'>" 
 		+ item.ime + "</td><td width='10%'><input type='text' name='kolicina' value='"
 		+ item.kolicina+"' onChange='changeKolicina("+item.dispID+",this,"+(itemsArray.length - 1)+")';/></td><td width='20%' align='right'>" 
 		+ item.proizvoditel + " - " + item.zemjapotelko  + "</td><td width='20%' align='right'><span class=\"money\">" 
 		+ item.cenaSoDanok +"</span></td><td width='5%' align='right'>"
-		+ item.ddvUI+"</td><TD width='5%' align='right' onclick='removeItemFromProList("+rowid+");'>"
+		+ item.ddvUI+"</td><TD width='5%' align='right' onclick='removeItemFromProList("+arrayid+");'>"
 		+ "X</td></tr></table></li>");
 	
 	/*$("#proizvodiSelected").append(
