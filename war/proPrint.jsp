@@ -188,7 +188,7 @@ function addProizvodToPrint(item){
 			<tr align="center">
 			<td>Примил</td>
 			<td>Директор</td>
-			<td>Фактурирал</td>
+			<td>Изработил</td>
 			</tr>
 			</table>
 		</td>

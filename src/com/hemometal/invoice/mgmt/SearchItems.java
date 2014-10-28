@@ -34,12 +34,19 @@ public class SearchItems extends HttpServlet {
 		String proizvoditel = req.getParameter("pro");
 		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-//		Query query = new Query("item").addFilter("kategorija", FilterOperator.EQUAL, kategorija)
-//				.addFilter("proizvoditel", FilterOperator.EQUAL, proizvoditel)
-//				.addFilter("zemjapotelko", FilterOperator.EQUAL, zemja)
-//				.addSort("ime", SortDirection.ASCENDING);
-		
 		Query query = new Query("item");
+		if(!("Сите".equalsIgnoreCase(kategorija)))
+			query.addFilter("kategorija", FilterOperator.EQUAL, kategorija);
+			
+		if(!("Сите".equalsIgnoreCase(proizvoditel)))
+			query.addFilter("proizvoditel", FilterOperator.EQUAL, proizvoditel);
+		
+		if(!("Сите".equalsIgnoreCase(zemja)))
+			query.addFilter("zemjapotelko", FilterOperator.EQUAL, zemja);
+				
+		query.addSort("ime", SortDirection.ASCENDING);
+		
+//		Query query = new Query("item");
 		
 		List<Entity> items = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(100));
 		

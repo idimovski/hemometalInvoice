@@ -40,15 +40,18 @@ public class CallBackAuth extends AbstractAuthorizationCodeCallbackServlet   {
 	private static final long serialVersionUID = 1L;
 	
 	private static ArrayList<String> list = new ArrayList<>();
+	private static ArrayList<String> adminsList = new ArrayList<>();
 	
 
 	protected void onSuccess(HttpServletRequest req, HttpServletResponse resp, Credential credential)
 	      throws ServletException, IOException {
 		
 	
-		list.add("ivanco888@gmail.com");
-		list.add("dimitarvelkovski@gmail.com");
-		
+		list.add("ivanco888@gmail.com"); adminsList.add("ivanco888@gmail.com");
+		list.add("dimitarvelkovski@gmail.com"); adminsList.add("dimitarvelkovski@gmail.com");
+		list.add("dimitar.velkovski@hemometal.com"); adminsList.add("dimitar.velkovski@hemometal.com");
+		list.add("marijan@hemometal.com");
+	
 		System.out.println("callback servlet called");
 		
 		Plus plus = new Plus(new NetHttpTransport(),new JacksonFactory(),credential);
@@ -66,6 +69,11 @@ public class CallBackAuth extends AbstractAuthorizationCodeCallbackServlet   {
 			
 			DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 			datastore.put(user);
+			req.getSession().setAttribute("user", email);
+			
+			if(adminsList.contains(email))
+				req.getSession().setAttribute("usertype", "admin");
+				
 			req.getSession().setAttribute("user", email);
 			
 		    resp.sendRedirect("/getallpro");

@@ -146,11 +146,13 @@ $(document).ready(function() {
 						</div>
 						<div class="3u">
 							<select id="proizvoditel" name="proizvoditel">
+							<option>Сите</option>
 							<jsp:include page="itemsMaker.jsp" ></jsp:include>
 							</select>
 						</div>
 						<div class="2u">
 							<select id="zemjapotelko" name="zemjapotelko">
+								<option>Сите</option>
 								<option>Грција</option>
 								<option>Индија</option>
 								<option>Италија</option>
@@ -164,6 +166,7 @@ $(document).ready(function() {
 					
 						<div class="3u">
 							<select id="kategorija" name="kategorija" title="Kfdsfasdsfk">
+								<option>Сите</option>
 								<option value="traktori">Трактори</option>
 								<option value="plugovi">Плугови</option>
 								<option value="tanjirachi">Тањирачи</option>
