@@ -104,21 +104,19 @@ function reload(selectOption){
 								<td width="5%">
 									<label class="description">Шифра</label>
 								</td>
-								<td width="30%">
+								<td width="52%">
 									<label class="description" >Име</label>
 								</td>
 								<td width="20%" align="right">
 									<label class="description" >Цена</label>
 								</td>
-								<td width="15%" align='center'>
+								<td width="8%" align='center'>
 									<label class="description" >Количина</label>
 								</td>
-								<td width="20%" align='right'>
+								<td width="15%" align='right'>
 									<label class="description" >Вкупна Сума (Ден)</label>
 								</td>
-								<td width="5%" align='right'>
-									<label class="description" ></label>
-								</td>
+								
 								
 							
 								
@@ -153,21 +151,19 @@ function reload(selectOption){
 								<td width="5%">
 									<label id="rowid" class="description" ><%=item.getId() %></label>
 								</td>
-								<td width="30%">
-									<label id="" class="description"><%=item.getName() %></label>
+								<td width="52%">
+									<label id="" class="description"><%=item.getName() + " (" + item.getProizvoditel() + " - "  +item.getZemja()+")" %></label>
 								</td>
 								<td width="20%" align="right">
 									<label class="description"><span class="money"><%=item.getCenaSoDanok() %></span></label>
 								</td>
-								<td width="15%" align="center" nowrap="nowrap">
+								<td width="8%" align="center" nowrap="nowrap">
 									<label class="description"><%=item.getKolicina() %></label>
 								</td>
-								<td width="20%" align='right'>
+								<td width="15%" align='right'>
 									<label class="description" ><span class="money"><%=item.getVkupnaCena() %></span></label>
 								</td>
-								<td width="5%" align='right'>
-									<label class="description" ></label>
-								</td>
+								
 								
 								
 							

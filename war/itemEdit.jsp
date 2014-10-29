@@ -98,32 +98,9 @@ function goToPage(url){
 						
 						<div class="3u">
 							<select name="proizvoditel">
-								<option <%if(i.getProperty("proizvoditel").equals("Bcs group Ferrari")){ %>selected="selected"<%} %> >Bcs group Ferrari</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Аббриата")){ %>selected="selected"<%} %> >Аббриата</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Агробар")){ %>selected="selected"<%} %> >Агробар</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Агровин")){ %>selected="selected"<%} %> >Агровин</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Агромеркур")){ %>selected="selected"<%} %> >Агромеркур</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Агрон")){ %>selected="selected"<%} %> >Агрон</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Алплер")){ %>selected="selected"<%} %> >Алплер</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Алтајоглу")){ %>selected="selected"<%} %> >Алтајоглу</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Гаспардо")){ %>selected="selected"<%} %> >Гаспардо</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Гружа аграр")){ %>selected="selected"<%} %> >Гружа аграр</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Занон")){ %>selected="selected"<%} %> >Занон</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Зетор")){ %>selected="selected"<%} %> >Зетор</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Илги")){ %>selected="selected"<%} %> >Илги</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Калдерони")){ %>selected="selected"<%} %> >Калдерони</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Континентал")){ %>selected="selected"<%} %> >Континентал</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Космо")){ %>selected="selected"<%} %> >Космо</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Метал фах")){ %>selected="selected"<%} %> >Метал фах</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Минос агри")){ %>selected="selected"<%} %> >Минос агри</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Паксан")){ %>selected="selected"<%} %> >Паксан</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Палазоглу")){ %>selected="selected"<%} %> >Палазоглу</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Пољострој")){ %>selected="selected"<%} %> >Пољострој</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Соналика ИТЛ")){ %>selected="selected"<%} %> >Соналика ИТЛ</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Тиназ")){ %>selected="selected"<%} %> >Тиназ</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Фпм агромеханика")){ %>selected="selected"<%} %> >Фпм агромеханика</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Фпм дељанин")){ %>selected="selected"<%} %> >Фпм дељанин</option>
-								<option <%if(i.getProperty("proizvoditel").equals("Хаттат")){ %>selected="selected"<%} %> >Хаттат</option>
+							<jsp:include page="itemsMaker.jsp" ></jsp:include>
+								
+								 
 								
 							</select>
 						</div>
