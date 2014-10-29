@@ -17,6 +17,17 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</filter-mapping>
 
 
+
+	<servlet>
+		<servlet-name>reportapproved</servlet-name>
+		<servlet-class>com.hemometal.invoice.mgmt.report.ReportApproved</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>reportapproved</servlet-name>
+		<url-pattern>/reportapproved</url-pattern>
+	</servlet-mapping>
+	
+	
 	<servlet>
 		<servlet-name>logout</servlet-name>
 		<servlet-class>com.hemometal.invoice.mgmt.auth.Logout</servlet-class>

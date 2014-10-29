@@ -5,6 +5,7 @@ encoding//src/com/hemometal/invoice/mgmt/DeleteObject.java=UTF-8
 encoding//src/com/hemometal/invoice/mgmt/PrintSpec.java=UTF-8
 encoding//src/com/hemometal/invoice/mgmt/SaveProfaktura.java=UTF-8
 encoding//src/com/hemometal/invoice/mgmt/SearchItems.java=UTF-8
+encoding//src/com/hemometal/invoice/mgmt/report/ReportApproved.java=UTF-8
 encoding//war/header.jsp=UTF-8
 encoding//war/itemsMaker.jsp=UTF-8
 encoding//war/js/jquery.formatCurrency-1.4.0.min.js=UTF-8

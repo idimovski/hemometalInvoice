@@ -59,7 +59,11 @@
 								
 								</li>
 								
-								<li><a class="icon fa-retweet" href="#"><span>Администрација</span></a></li>
+								<li><a class="icon fa-retweet" href="#"><span>Администрација</span></a>
+								<ul>
+									<li><a href="reportapproved">Извештај за Одобрени Профактури</a></li>
+								</ul>
+								</li>
 								<li><a class="icon fa-sitemap" href="logout"><span>Одјава</span></a></li>
 							</ul>
 						</nav>
