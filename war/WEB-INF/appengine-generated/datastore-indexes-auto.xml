@@ -1,34 +1,29 @@
-<!-- Indices written at Wed, 29 Oct 2014 15:56:06 UTC -->
+<!-- Indices written at Wed, 29 Oct 2014 21:38:39 UTC -->
 
 <datastore-indexes>
 
-    <!-- Used 4 times in query history -->
+    <!-- Used 1 time in query history -->
     <datastore-index kind="pro" ancestor="false" source="auto">
         <property name="deleted" direction="asc"/>
         <property name="date" direction="desc"/>
     </datastore-index>
 
-    <!-- Used 4 times in query history -->
-    <datastore-index kind="item" ancestor="false" source="auto">
-        <property name="deleted" direction="asc"/>
-        <property name="date" direction="desc"/>
-    </datastore-index>
-
-    <!-- Used 10 times in query history -->
+    <!-- Used 2 times in query history -->
     <datastore-index kind="item" ancestor="false" source="auto">
         <property name="proizvoditel" direction="asc"/>
         <property name="ime" direction="asc"/>
     </datastore-index>
 
-    <!-- Used 1 time in query history -->
+    <!-- Used 2 times in query history -->
     <datastore-index kind="item" ancestor="false" source="auto">
-        <property name="deleted" direction="asc"/>
         <property name="proizvoditel" direction="asc"/>
-        <property name="date" direction="desc"/>
+        <property name="zemjapotelko" direction="asc"/>
+        <property name="ime" direction="asc"/>
     </datastore-index>
 
-    <!-- Used 3 times in query history -->
+    <!-- Used 1 time in query history -->
     <datastore-index kind="item" ancestor="false" source="auto">
+        <property name="kategorija" direction="asc"/>
         <property name="proizvoditel" direction="asc"/>
         <property name="zemjapotelko" direction="asc"/>
         <property name="ime" direction="asc"/>

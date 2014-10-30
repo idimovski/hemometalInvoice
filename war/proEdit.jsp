@@ -366,8 +366,9 @@ var pro = $( "#proizvoditel" ).val();
 var zem = $( "#zemjapotelko" ).val();
 var kat = $( "#kategorija" ).val();
 
-
-	
+pro = encodeURIComponent( pro );
+zem = encodeURIComponent( zem );
+kat  = encodeURIComponent( kat );
 		jQuery.ajax({
 		    type: 'GET',
 		    encoding:"UTF-8",
@@ -377,7 +378,6 @@ var kat = $( "#kategorija" ).val();
 		    success: function(data) {
 		        
 		    	
-		    	  console.log(data);
 				  var obj = data;
 				  //var obj = jQuery.parseJSON(data);
 				  $("#itemsPagination").empty();
